@@ -1,0 +1,22 @@
+.question{
+    display: inline-block;
+    background: linear-gradient(transparent 70%, #ffff7f 0%); 
+}
+.img{
+    display:block;
+    width: 100%;
+}
+.choice{
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    margin-bottom: 10px; 
+    padding:10px 20px;
+    border: 1px solid gray;
+    box-shadow: 2px 2px 4px gray;
+}
+.container{
+    margin: 0 auto;
+    width: 70%;
+
+}
