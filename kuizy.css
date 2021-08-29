@@ -2,8 +2,9 @@
     display: inline-block; 
     background: linear-gradient(transparent 70%, #ffff7f 0%); 
     margin: auto 200px;    
+    font-size: 17px;
 }
-.img{
+.image{
     display:block;
     width: 50%;
     margin-bottom: 10px;
