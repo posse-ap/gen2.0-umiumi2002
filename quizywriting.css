@@ -1,0 +1,11 @@
+.correctbox{
+    background: linear-gradient(transparent 80%, blue 0%);
+    display: inline-block;
+    font-weight: bold;
+}
+
+.incorrectbox{
+    background: linear-gradient(transparent 80%, red 0%);
+    display: inline-block;
+    font-weight: bold;
+}
