@@ -1,23 +1,23 @@
 'use strict';
 
 let choices = new Array();
-choices.push['たかなわ', 'たかわ', 'こうわ'];
-choices.push['かめいど', 'かめど', 'かめと'];
-choices.push['こうじまち', 'かゆまち', 'おかとまち'];
+choices.push(['たかなわ', 'たかわ', 'こうわ']);
+choices.push(['かめいど', 'かめど', 'かめと']);
+choices.push(['こうじまち', 'かゆまち', 'おかとまち']);
 
-function aaa(questionId, selectionId, validId) {
-
-    let contents = `<h1>${questionId}.この地名は何て読む？</h1>
-    <img src="img/photo${questionId}.png" alt="問題写真">`
+function body(questionId, selectionId, validId) {
+    let contents = `<h1 class="question">${questionId}.この地名は何て読む？</h1>
+    <img class="image" src="./img/photo${questionId - 1}.png" alt="問題写真">`
 
     selectionId.forEach(function (selection, index) {
-        contents += ` <li id="answer${questionId}-${index + 1}" onclick ="clickfunction(${questionId},${index + 1},${validId})">${selection}</li>`
+        contents += ` <li id="" name="answerlist-${questionId}" class="selectionbox" onclick ="clickfunction(${questionId},${index + 1},${validId})">${selection}</li>`
     });
 
-    contents += `<span class="answerbox" id="anserbox-${questionId}"></span>
+    contents += `<span class="answerbox" id="anserbox-${questionId}">
     <span id='correct'>正解！</span>
     <span id='incorrect'>不正解！</span>
-    <span>正解は「${selectionId[validId - 1]}」です！</span>`;
+    <span>正解は「${selectionId[validId - 1]}」です！</span>
+    </span>`;
 
     document.getElementById('main').insertAdjacentHTML('beforeend', contents);
 }
@@ -25,15 +25,14 @@ function aaa(questionId, selectionId, validId) {
 
 function shuffle() {
     choices.forEach(function (question, index) {
-        answer = question[0];
+        let answer = question[0];
         for (let i = question.length - 1; i > 0; i--) {
             let r = Math.floor(Math.random() * (i + 1));
             let tmp = question[i];
             question[i] = question[r];
             question[r] = tmp;
         }
-        aaa(index + 1, question, question.indexOf(answer));
-        console.log('aaaaaaa');
+        body(index + 1, question, question.indexOf(answer)+1);
     });
 }
 shuffle();
@@ -41,12 +40,13 @@ shuffle();
 
 
 function clickfunction(questionId, selectionId, validId) {
-    let answerlists = document.getElementById(`answer${questionId}-${index + 1}`);
+    let answerlists = document.getElementsByName('answerlist-' + questionId);
     answerlists.forEach(answerlist => {
         answerlist.style.pointerEvents = 'none';
     });
 
-    let answerbox = document.getElementById('anserbox' + questionId);
+    let answerbox = document.getElementById('anserbox-' + questionId); 
+    
     if (selectionId === validId) {
         document.getElementById('correct').style.display = 'block';
         document.getElementById('correct').className = 'correctbox'
@@ -57,7 +57,7 @@ function clickfunction(questionId, selectionId, validId) {
         document.getElementById('incorrect').style.display = 'block';
         document.getElementById('incorrect').className = 'incorrectbox'
     }
-    answerbox.style.display = 'block';
+    answerbox.style.display='block';
 }
 
 
