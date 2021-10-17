@@ -48,6 +48,7 @@ function clickfunction(questionId, selectionId, validId) {
     let answerbox = document.getElementById('anserbox-' + questionId); 
     
     if (selectionId === validId) {
+        
         document.getElementById('correct').style.display = 'block';
         document.getElementById('correct').className = 'correctbox'
         document.getElementById('incorrect').style.display = 'none';

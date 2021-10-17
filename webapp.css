@@ -1,0 +1,102 @@
+.header {
+    /* position: fixed; */
+    top: 0;
+    z-index: 100;
+    justify-content: center;
+    background: white;
+    
+}
+
+.all-header {
+    /* position: fixed; */
+    height: 64px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background: white;
+}
+
+.all-header img {
+    height: 60px;
+    margin-left: 40px;
+    background-size: cover;
+}
+
+.all-header h1 {
+    color: #87CEFA;
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+.button {
+    background: #1E90FF;
+    color: white;
+    border-radius: 20px;
+    /* border: #1E90FF; */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.45);
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: 40px;
+    padding: 10px 30px;
+}
+
+/* body */
+.all-container {
+    z-index: 1;
+    background: rgb(#8f8c8c, 0.5);
+    margin-top: 64px;
+}
+.studies {
+    display: flex;
+    justify-content: center;
+    /* justify-content: space-between; */
+    margin-top: 20px;
+    /* width: 50%; */
+}
+
+.studytime {
+    margin: 0 10px;
+    background: white;
+    line-height: 2;
+
+    /* margin: 2em auto; */
+    padding: 1em 2em;
+    border: 1px solid #a9a9a9;
+    box-shadow: 1.5px 1.5px 2px #696969;
+    border-radius: 10px;
+
+}
+
+.date {
+    color: darkblue;
+
+}
+
+.number {
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.hour {
+    color: #87CEFA;
+}
+
+.language {
+    margin: 0 20px;
+    width: 300px;
+    padding: 1em 20px;
+    border: 1px solid #a9a9a9;
+    box-shadow: 1.5px 1.5px 2px #696969;
+    border-radius: 10px;
+}
+
+.contents {
+    margin: 20px;
+    width: 300px;
+    /* height: 300px; */
+    padding: 1em 20px;
+    border: 1px solid #a9a9a9;
+    box-shadow: 1.5px 1.5px 2px #696969;
+    border-radius: 10px;
+}
