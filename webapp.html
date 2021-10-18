@@ -6,50 +6,85 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
     <link rel="stylesheet" href="webapp.css">
     <title>WEBAPP</title>
-
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 </head>
 
 <body>
     <header>
         <!-- <div class="header"> -->
-            <div class="all-header">
-                <img src="./img/posselogo.jpg" alt="POSSEロゴ">
-                <h1>4th week</h1>
-                <button class="button">記録・投稿</button>
-            </div>
+        <div class="all-header">
+            <img src="./img/posselogo.jpg" alt="POSSEロゴ">
+            <h1>4th week</h1>
+            <button class="button">記録・投稿</button>
+        </div>
         <!-- </div> -->
     </header>
     <main>
         <div class="all-container">
-            <div class="studies">
-                <div class="studytime">
-                    <p class="date">Today</p>
-                    <p class="number">3</p>
-                    <p class="hour">hour</p> 
-                </div> 
-                <div class="studytime">
-                    <p class="date">Month</p>
-                    <p class="number">120</p>
-                    <p class="hour">hour</p>
-                </div>
-                <div class="studytime">
-                    <p class="date">Total</p>
-                    <p class="number">1348</p>
-                    <p class="hour">hour</p>
-                </div>
-                <div class="language">
-                    <p>学習言語</p>
+            <div class="leftside">
+                <div class="studies">
+                    <div class="studytime">
+                        <p class="date">Today</p>
+                        <p class="number">3</p>
+                        <p class="hour">hour</p>
+                    </div>
+                    <div class="studytime">
+                        <p class="date">Month</p>
+                        <p class="number">120</p>
+                        <p class="hour">hour</p>
+                    </div>
+                    <div class="studytime">
+                        <p class="date">Total</p>
+                        <p class="number">1348</p>
+                        <p class="hour">hour</p>
+                    </div>
 
                 </div>
-                <div class="contents">
-                    <p>学習コンテンツ</p>
-
+                <div class="graph">
+                    <!-- <img src="./img/posselogo.jpg" alt="グラフ"> -->
                 </div>
             </div>
-
+            <div class="rightside">
+                <div class="language">
+                    <p class="number">学習言語</p>
+                </div>
+                <div class="contents">
+                    <p class="number">学習コンテンツ</p>
+                </div>
+            </div>
         </div>
+        <div class="underside">
+            <p>2021年10月</p>
+        </div>
+        <div class="modal">
+            <div class="modal-left">
+                <p>学習日</p>
+                <div class="calendar">
+                    <input type="text" name="datepicker" class="datepicker" value="">
+                    <div class="calendar__modal">
+                    </div>
+                </div>
+                <p>学習コンテンツ</p>
+                <div class="contact__form__item">
+                    <!-- <dd> -->
+                        <label><input type="checkbox" name="content" value="">N予備校</label>
+                        <label><input type="checkbox" name="content" value="">ドットインストール</label>
+                        <label><input type="checkbox" name="content" value="">POSSE課題</label>
+                    <!-- </dd> -->
+                </div>
+            </div>
+            <div class="modal-right">
+                <p>学習時間</p>
+                <div>
+                    <input type="text" name="datepicker" class="study-time" value="">
+                </div>
+
+            </div>
+
 
         </div>
     </main>

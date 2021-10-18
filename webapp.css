@@ -1,3 +1,8 @@
+body {
+    background: rgba(0, 0, 0, 0.1);
+    
+}
+
 .header {
     /* position: fixed; */
     top: 0;
@@ -42,10 +47,17 @@
 
 /* body */
 .all-container {
+    display: flex;
+    justify-content: center;
     z-index: 1;
-    background: rgb(#8f8c8c, 0.5);
-    margin-top: 64px;
+    
+    margin: 20px 60px;
 }
+
+.leftside {
+    width: 50%;
+}
+
 .studies {
     display: flex;
     justify-content: center;
@@ -64,12 +76,12 @@
     border: 1px solid #a9a9a9;
     box-shadow: 1.5px 1.5px 2px #696969;
     border-radius: 10px;
-
 }
+
 
 .date {
     color: darkblue;
-
+    
 }
 
 .number {
@@ -82,21 +94,84 @@
     color: #87CEFA;
 }
 
-.language {
-    margin: 0 20px;
-    width: 300px;
+.graph {
+    margin-top: 20px;
+    width: 500px;
+    height: 300px;
     padding: 1em 20px;
     border: 1px solid #a9a9a9;
     box-shadow: 1.5px 1.5px 2px #696969;
     border-radius: 10px;
+    background: white;
+}
+
+.rightside {
+    margin-left: 20px;
+    display: flex;
+    width: 50%;
+}
+
+.language {
+    margin: 20px 0;
+    width: 200px;
+    padding: 1em 20px;
+    border: 1px solid #a9a9a9;
+    box-shadow: 1.5px 1.5px 2px #696969;
+    border-radius: 10px;
+    background: white;
 }
 
 .contents {
     margin: 20px;
-    width: 300px;
+    width: 200px;
     /* height: 300px; */
     padding: 1em 20px;
     border: 1px solid #a9a9a9;
     box-shadow: 1.5px 1.5px 2px #696969;
     border-radius: 10px;
+    background: white;
+}
+
+.underside {
+    padding-bottom: 20px ;
+}
+
+.underside p {
+    text-align: center;  
+}
+
+/* モーダル */
+.modal {
+    width: 900px;
+    background: white;
+    border-radius: 10px;
+    display: flex;
+    margin: auto;
+}
+
+.modal-left {
+    padding: 20px 0;
+    margin-left: 56px;
+}
+
+.calendar__modal {
+    /* border-radius: 20px; */
+}
+
+.datepicker {
+    width: 374px;
+    background: rgba(0, 0, 0, 0.08);
+    border: 1px;
+}
+
+.modal-right {
+    margin-left: 40px;
+    padding: 20px 0;
+    margin-right: 56px;
+}
+
+.study-time {
+    width: 374px;
+    background: rgba(0, 0, 0, 0.08);
+    border: 1px;
 }
