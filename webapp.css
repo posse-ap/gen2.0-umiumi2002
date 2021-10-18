@@ -50,7 +50,6 @@ body {
     display: flex;
     justify-content: center;
     z-index: 1;
-    
     margin: 20px 60px;
 }
 
@@ -145,13 +144,53 @@ body {
     width: 900px;
     background: white;
     border-radius: 10px;
-    display: flex;
     margin: auto;
+
+    /* display: none; */
+    z-index: 100;
+}
+
+.close-btn {
+    display: block;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #a9a9a9; /* 枠の調整 */
+    border-radius: 50%;  /* 丸みの度合い */
+    background: #fff; /* ボタンの背景色 */
+    margin-left: 850px ;
+}
+
+.close-btn::before, .close-btn::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 3px; /* 棒の幅（太さ） */
+    height: 22px; /* 棒の高さ */
+    background: #a9a9a9; /* バツ印の色 */
+}
+
+.close-btn::before {
+    transform: translate(-50%,-50%) rotate(45deg);
+}
+
+.close-btn::after {
+    transform: translate(-50%,-50%) rotate(-45deg);
+}
+
+.modal-contents {
+    display: flex;
 }
 
 .modal-left {
     padding: 20px 0;
     margin-left: 56px;
+}
+
+.modal-left p {
+    padding-top: 15px;
+    font-weight: bold;
 }
 
 .calendar__modal {
@@ -170,8 +209,46 @@ body {
     margin-right: 56px;
 }
 
+.modal-right p {
+    padding-top: 15px;
+    font-weight: bold;
+}
+
 .study-time {
     width: 374px;
     background: rgba(0, 0, 0, 0.08);
     border: 1px;
+}
+
+.twitter-comment {
+    width: 374px;
+    /* height: 100px; */
+    background: rgba(0, 0, 0, 0.08);
+    border: 1px;
+    font-size: 15px;
+}
+
+.sharebutton {
+    display: flex;
+}
+
+.sharebutton input {
+    margin-top: 15px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.sharebutton p {
+    padding-left: 10px;
+}
+
+
+.contact__form__item label {
+    padding: 10px;
+}
+
+.postbutton {
+    padding: 10px 0 20px 0;
+    text-align: center;
 }

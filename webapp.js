@@ -1,6 +1,5 @@
 'use strict';
 
-
 $(function () {
     //datepicker処理
     $('.datepicker').datepicker({
@@ -18,3 +17,10 @@ $(function () {
         $('.appendDatepicker').addClass('open');
     });
 });
+
+// function(click, => {
+//     let
+// })
+
+let postbutton = document.getElementById('post')
+

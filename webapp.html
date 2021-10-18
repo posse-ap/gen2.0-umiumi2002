@@ -19,7 +19,7 @@
         <div class="all-header">
             <img src="./img/posselogo.jpg" alt="POSSEロゴ">
             <h1>4th week</h1>
-            <button class="button">記録・投稿</button>
+            <button class="button" id="post">記録・投稿</button>
         </div>
         <!-- </div> -->
     </header>
@@ -61,31 +61,49 @@
             <p>2021年10月</p>
         </div>
         <div class="modal">
-            <div class="modal-left">
-                <p>学習日</p>
-                <div class="calendar">
-                    <input type="text" name="datepicker" class="datepicker" value="">
-                    <div class="calendar__modal">
+            <span class="close-btn"></span>
+            <div class="modal-contents">
+                <div class="modal-left">
+                    <p>学習日</p>
+                    <div class="calendar">
+                        <input type="text" name="datepicker" class="datepicker" value="">
+                        <div class="calendar__modal">
+                        </div>
                     </div>
-                </div>
-                <p>学習コンテンツ</p>
-                <div class="contact__form__item">
-                    <!-- <dd> -->
+                    <p>学習コンテンツ（複数選択可）</p>
+                    <div class="contact__form__item">
+                        <!-- <dd> -->
                         <label><input type="checkbox" name="content" value="">N予備校</label>
                         <label><input type="checkbox" name="content" value="">ドットインストール</label>
                         <label><input type="checkbox" name="content" value="">POSSE課題</label>
-                    <!-- </dd> -->
+                        <!-- </dd> -->
+                    </div>
+                    <p>学習言語（複数選択可）</p>
+                    <div class="contact__form__item">
+                        <!-- <dd> -->
+                        <label><input type="checkbox" name="content" value="">HTML</label>
+                        <label><input type="checkbox" name="content" value="">CSS</label>
+                        <label><input type="checkbox" name="content" value="">JavaScript</label>
+                        <label><input type="checkbox" name="content" value="">PHP</label>
+                        <label><input type="checkbox" name="content" value="">Laravel</label>
+                        <label><input type="checkbox" name="content" value="">SQL</label>
+                        <label><input type="checkbox" name="content" value="">SHELL</label>
+                        <label><input type="checkbox" name="content" value="">情報システム基礎知識</label>
+                        <!-- </dd> -->
+                    </div>
+                </div>
+                <div class="modal-right">
+                    <p>学習時間</p>
+                    <div>
+                        <input type="text" name="datepicker" class="study-time" value="">
+                    </div>
+                    <p>Twitter用コメント</p>
+                    <textarea name="" id="" class="twitter-comment" cols="30" rows="10"></textarea>
+                    <div class="sharebutton"><input type="checkbox"><p>Twitterにシェアする</p></div>
+                    
                 </div>
             </div>
-            <div class="modal-right">
-                <p>学習時間</p>
-                <div>
-                    <input type="text" name="datepicker" class="study-time" value="">
-                </div>
-
-            </div>
-
-
+            <div class="postbutton"><button class="button">記録・投稿</button></div>
         </div>
     </main>
 
