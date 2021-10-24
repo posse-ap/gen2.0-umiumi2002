@@ -1,40 +1,60 @@
-body {
-    background: rgba(0, 0, 0, 0.1);
-    
+html {
+    overflow: auto;
 }
 
-.header {
-    /* position: fixed; */
+body {
+    background: #f5f5f8;
+}
+
+/* .header {
+    position: fixed;
     top: 0;
     z-index: 100;
     justify-content: center;
     background: white;
-    
-}
+    width: 100%;
+} */
 
 .all-header {
-    /* position: fixed; */
+    width: 100%;
+    /* display: flex; */
+    /* justify-content: center; */
+    background: white;
+    position: fixed;
+    top: 0;
+    left: 0;
     height: 64px;
+    z-index: 100000;
+    box-shadow: 3px 3px 3px rgb(204 204 204);
+}
+
+.site-header {
+    /* position: fixed; */
+    /* top: 0; */
+    height: 100%;
     display: flex;
     align-items: center;
     width: 100%;
-    background: white;
+    /* background: white; */
+    /* padding: 0 20px; */
+    
 }
 
-.all-header img {
+.site-header img {
     height: 60px;
     margin-left: 40px;
     background-size: cover;
+    object-fit: contain;
 }
 
-.all-header h1 {
-    color: #87CEFA;
+.site-header h1 {
+    color: #97b9d1;
     margin-left: 10px;
     font-size: 20px;
 }
 
 .button {
-    background: #1E90FF;
+    background: linear-gradient(to right,#0f71bc,#3ccfff);
     color: white;
     border-radius: 20px;
     /* border: #1E90FF; */
@@ -45,12 +65,22 @@ body {
     padding: 10px 30px;
 }
 
+.transition {
+    transition: 10s;
+}
+
 /* body */
+main {
+    margin-top: 64px;
+}
+
 .all-container {
     display: flex;
     justify-content: center;
     z-index: 1;
-    margin: 20px 60px;
+    /* margin: 20px 60px; */
+    padding-top: 20px;
+    gap: 20px;
 }
 
 .leftside {
@@ -60,18 +90,16 @@ body {
 .studies {
     display: flex;
     justify-content: center;
-    /* justify-content: space-between; */
     margin-top: 20px;
-    /* width: 50%; */
+    margin: 0 20px;
+    gap: 20px;
 }
 
 .studytime {
-    margin: 0 10px;
+    width: 100%;
     background: white;
     line-height: 2;
-
-    /* margin: 2em auto; */
-    padding: 1em 2em;
+    padding: 1em;
     border: 1px solid #a9a9a9;
     box-shadow: 1.5px 1.5px 2px #696969;
     border-radius: 10px;
@@ -80,6 +108,7 @@ body {
 
 .date {
     color: darkblue;
+    text-align: center;
     
 }
 
@@ -87,16 +116,19 @@ body {
     color: black;
     font-weight: bold;
     font-size: 20px;
+    white-space: nowrap;
+    text-align: center;
 }
 
 .hour {
     color: #87CEFA;
+    text-align: center;
 }
 
 .graph {
-    margin-top: 20px;
-    width: 500px;
-    height: 300px;
+    margin: 20px;
+    width: 40vw;
+    height: 200px;
     padding: 1em 20px;
     border: 1px solid #a9a9a9;
     box-shadow: 1.5px 1.5px 2px #696969;
@@ -105,14 +137,16 @@ body {
 }
 
 .rightside {
-    margin-left: 20px;
-    display: flex;
     width: 50%;
+    margin:0 20px;
+    display: flex;
+    gap: 20px;
+    
 }
 
 .language {
-    margin: 20px 0;
-    width: 200px;
+    /* margin: 0 20px; */
+    width: 100%;
     padding: 1em 20px;
     border: 1px solid #a9a9a9;
     box-shadow: 1.5px 1.5px 2px #696969;
@@ -121,8 +155,8 @@ body {
 }
 
 .contents {
-    margin: 20px;
-    width: 200px;
+    /* margin: 0 20px; */
+    width: 100%;
     /* height: 300px; */
     padding: 1em 20px;
     border: 1px solid #a9a9a9;
@@ -133,21 +167,29 @@ body {
 
 .underside {
     padding-bottom: 20px ;
+    display: flex;
+    justify-content: center;
 }
 
-.underside p {
-    text-align: center;  
+.underside button {
+    color: #0f71bc;
+    /* color: #97b9d1; */
+    border: none;
+    background: none;
 }
 
 /* モーダル */
 .modal {
-    width: 900px;
+    position: absolute;
+    top: 84px;
+    left: 0;
+    right: 0;
+    max-width: 900px;
     background: white;
     border-radius: 10px;
     margin: auto;
-
-    /* display: none; */
     z-index: 100;
+    display: none;
 }
 
 .close-btn {
@@ -158,7 +200,7 @@ body {
     border: 2px solid #a9a9a9; /* 枠の調整 */
     border-radius: 50%;  /* 丸みの度合い */
     background: #fff; /* ボタンの背景色 */
-    margin-left: 850px ;
+    /* margin-left: 850px ; */
 }
 
 .close-btn::before, .close-btn::after {
@@ -181,11 +223,13 @@ body {
 
 .modal-contents {
     display: flex;
+    gap: 40px;
 }
 
 .modal-left {
     padding: 20px 0;
     margin-left: 56px;
+    width: 50%;
 }
 
 .modal-left p {
@@ -193,20 +237,18 @@ body {
     font-weight: bold;
 }
 
-.calendar__modal {
-    /* border-radius: 20px; */
-}
-
 .datepicker {
-    width: 374px;
+    width: 100%;
     background: rgba(0, 0, 0, 0.08);
     border: 1px;
+    border-radius: 10px;
 }
 
 .modal-right {
-    margin-left: 40px;
+    /* margin-left: 40px; */
     padding: 20px 0;
     margin-right: 56px;
+    width: 50%;
 }
 
 .modal-right p {
@@ -215,17 +257,19 @@ body {
 }
 
 .study-time {
-    width: 374px;
+    width: 100%;
     background: rgba(0, 0, 0, 0.08);
-    border: 1px;
+    border-radius: 10px;
+    border: rgba(0, 0, 0, 0.08);;
 }
 
 .twitter-comment {
-    width: 374px;
+    width:100%;
     /* height: 100px; */
     background: rgba(0, 0, 0, 0.08);
     border: 1px;
     font-size: 15px;
+    border-radius: 10px;
 }
 
 .sharebutton {
@@ -251,4 +295,128 @@ body {
 .postbutton {
     padding: 10px 0 20px 0;
     text-align: center;
+}
+
+.loading {
+    position: absolute;
+    z-index: 1000; 
+    width: 100%;
+    height: 100%;
+    top: 64px;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    display: none;
+}
+
+.loading p {
+    margin-top: 10px;
+    color: #bde360;
+    text-align: center;
+}
+
+.a {
+    padding-top: 100px;
+}
+
+.check-text {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    padding: 20px;
+    background: #bde360;
+    color: #fff;
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* .loading.hide {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 500ms;
+} */
+
+
+@media screen and (max-width: 960px) {
+    .graph {
+        width: 36vw;
+    }
+
+    .rightside {
+        /* margin-left: 5vw; */
+    }
+
+    .modal {
+        width: 90%;
+    }
+
+
+}
+@media screen and (max-width: 768px) {
+}
+@media screen and (max-width: 650px) {
+    .site-header img {
+        width: 100px;
+    }
+
+    .button {
+        margin-right: 10vw;
+    }
+    
+    .all-container {
+        flex-direction: column;
+        width: 100%;
+        margin: auto;
+    }
+
+    .leftside {
+        width: 100%;
+    }
+
+    .studies {
+        gap: 16px;
+    }
+
+    .graph {
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%;
+    }
+
+    .rightside {
+        width: 100%;
+        height: 200px;
+        margin: 0;
+        padding: 0 20px;
+    }
+
+    .modal {
+        /* width: 100%; */
+    }
+
+    .modal-left {
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%;
+    }
+
+    .modal-contents {
+        flex-direction: column;
+        justify-content: center;
+        gap: 0;
+    }
+
+    .modal-right {
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%;
+    }
+}
+@media screen and (max-width: 480px) {
+    .button {
+        margin-right: 0;
+    }
 }
