@@ -1,9 +1,12 @@
 html {
-    overflow: auto;
+    /* overflow: auto;  */
+    /* background-size: contain; */
+    max-width: 100%;
 }
 
 body {
     background: #f5f5f8;
+    max-width: 100%;
 }
 
 /* .header {
@@ -75,6 +78,7 @@ main {
 }
 
 .all-container {
+    width: 100%;
     display: flex;
     justify-content: center;
     z-index: 1;
@@ -85,13 +89,14 @@ main {
 
 .leftside {
     width: 50%;
+    margin-left: 50px;
 }
 
 .studies {
     display: flex;
     justify-content: center;
     margin-top: 20px;
-    margin: 0 20px;
+    /* margin-left: 20px; */
     gap: 20px;
 }
 
@@ -126,7 +131,7 @@ main {
 }
 
 .graph {
-    margin: 20px;
+    margin-top: 20px;
     width: 40vw;
     /* height: 200px; */
     padding: 1em 20px;
@@ -140,7 +145,7 @@ main {
 
 .rightside {
     width: 50%;
-    margin:0 20px;
+    margin-right: 50px;
     display: flex;
     gap: 20px;
     
@@ -167,19 +172,49 @@ main {
     background: white;
 }
 
-.circle {
-    padding: 1vw 0;
+.blank {
+    margin-bottom: 30px;
 }
 
-svg {
-    height: 200;
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 30px;
 }
-rect {
-    height: 200;
+
+
+.item1 {
+    color: #0A45EC
+}
+.item2 {
+    color: #0F71BD
+}
+.item3 {
+    color: #20BDDE
+}
+.item4 {
+    color: rgb(16, 150, 24)
+}
+.item5 {
+    color: rgb(153, 0, 153)
+}
+.item6 {
+    color: rgb(0, 153, 198)
+}
+.item7 {
+    color: rgb(221, 68, 119)
+}
+.item8 {
+    color: rgb(102, 170, 0)
+}
+
+legend {
+    padding-right: 6px;
 }
 
 .underside {
-    padding-bottom: 20px ;
+    margin-top: 50px;
+    /* padding-bottom: 20px ; */
     display: flex;
     justify-content: center;
 }
@@ -354,6 +389,10 @@ rect {
 
 
 @media screen and (max-width: 960px) {
+    .all-container {
+        /* max-width: 960px; */
+    }
+
     .graph {
         width: 36vw;
     }
@@ -370,7 +409,8 @@ rect {
 }
 @media screen and (max-width: 768px) {
 }
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 768px) {
+
     .site-header img {
         width: 100px;
     }
@@ -382,11 +422,14 @@ rect {
     .all-container {
         flex-direction: column;
         width: 100%;
-        margin: auto;
+        /* margin: auto; */
     }
 
     .leftside {
         width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin: 0;
     }
 
     .studies {
@@ -402,8 +445,25 @@ rect {
     .rightside {
         width: 100%;
         height: 400px;
+        padding-left: 20px;
+        padding-right: 20px;
         margin: 0;
-        padding: 0 20px;
+    }
+
+    .language {
+        height: 405px;
+    }
+
+    .contents {
+        height: 405px;
+    }
+
+    .button {
+        display: none;
+    }
+
+    .underside {
+        width: 100%;
     }
 
     .modal {
@@ -427,6 +487,7 @@ rect {
         margin-right: auto;
         width: 70%;
     }
+
 }
 @media screen and (max-width: 480px) {
     .button {

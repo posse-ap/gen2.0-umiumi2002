@@ -262,6 +262,73 @@ let postbutton = document.getElementById('post')
 //     window.myBar = new Chart(ctx).Bar(barChartData);
 // }
 
+//棒グラフ
+google.charts.load('current', { packages: ['corechart', 'bar'] });
+google.charts.setOnLoadCallback(drawBasic);
+
+function drawBasic() {
+
+    var data = new google.visualization.DataTable();
+    data.addColumn('timeofday', 'Time of Day');
+    data.addColumn('number', 'Study Time');
+
+    data.addRows([
+        [{ v: [0, 0, 0], f: '0' }, 0],
+        [{ v: [1, 0, 0], f: '1' }, 1],
+        [{ v: [2, 0, 0], f: '2' }, 1],
+        [{ v: [3, 0, 0], f: '3' }, 1],
+        [{ v: [4, 0, 0], f: '4' }, 1],
+        [{ v: [5, 0, 0], f: '5' }, 1],
+        [{ v: [6, 0, 0], f: '6' }, 1],
+        [{ v: [7, 0, 0], f: '7' }, 1],
+        [{ v: [8, 0, 0], f: '8' }, 1],
+        [{ v: [9, 0, 0], f: '9' }, 2],
+        [{ v: [10, 0, 0], f: '10' }, 3],
+        [{ v: [11, 0, 0], f: '11' }, 4],
+        [{ v: [12, 0, 0], f: '12' }, 5],
+        [{ v: [13, 0, 0], f: '13' }, 6],
+        [{ v: [14, 0, 0], f: '14' }, 7],
+        [{ v: [15, 0, 0], f: '15' }, 8],
+        [{ v: [16, 0, 0], f: '16' }, 9],
+        [{ v: [17, 0, 0], f: '17' }, 10],
+        [{ v: [18, 0, 0], f: '18' }, 10],
+        [{ v: [19, 0, 0], f: '19' }, 10],
+        [{ v: [20, 0, 0], f: '20' }, 3],
+        [{ v: [21, 0, 0], f: '21' }, 10],
+        [{ v: [22, 0, 0], f: '22' }, 2],
+        [{ v: [23, 0, 0], f: '23' }, 10],
+        [{ v: [24, 0, 0], f: '24' }, 7],
+        [{ v: [25, 0, 0], f: '25' }, 10],
+        [{ v: [26, 0, 0], f: '26' }, 10],
+        [{ v: [27, 0, 0], f: '27' }, 6],
+        [{ v: [28, 0, 0], f: '28' }, 10],
+        [{ v: [29, 0, 0], f: '29' }, 10],
+        [{ v: [30, 0, 0], f: '30' }, 10],
+        [{ v: [31, 0, 0], f: '31' }, 5],
+    ]);
+
+    var options = {
+        chartArea: {left:20, top:20, width:'100%', height:'75%'},
+        // title: 'Motivation Level Throughout the Day',
+        hAxis: {
+            // title: 'Time of Day',
+            format: 'h:mm a',
+            viewWindow: {
+                min: [0, 100, 0],
+                max: [31, 30, 0]
+            }
+        },
+        vAxis: {
+            // title: 'Rating (scale of 1-10)'
+        }
+    };
+
+    var chart = new google.visualization.ColumnChart(
+        document.getElementById('chart_div'));
+
+    chart.draw(data, options);
+}
+
 
 //円グラフ
 google.charts.load("current", { packages: ["corechart"] });
@@ -275,16 +342,16 @@ function drawChartLanguage() {
         ['PHP', 14.7],
         ['Laravel', 8.8],
         ['SQL', 29.4],
-        ['SHELL', 10.8]
-        // ['情報システム基礎知識（その他）', 1.0]
+        ['SHELL', 10.7],
+        ['情報システム基礎知識（その他）', 0]
     ]);
 
     var options = {
-        chartArea:{width:'100%',height:'100%'},
+        chartArea: { width: '100%', height: '100%' },
         title: 'My Daily Activities',
         pieHole: 0.5,
         legend:
-        { position: 'none'},
+            { position: 'none' },
         slices: {
             0: { color: '#0A45EC' },
             1: { color: '#0F71BD' },
@@ -292,6 +359,8 @@ function drawChartLanguage() {
         },
         pieSliceBorderColor: 'none'
     };
+    // let startX = me.startX - 1
+    // 　　let selectionWidth = me.clientX - gridRectDim.left - startX - 1
 
     var chart = new google.visualization.PieChart(document.getElementById('donutchart-language'));
     chart.draw(data, options);
@@ -303,25 +372,24 @@ google.charts.setOnLoadCallback(drawChartContent);
 function drawChartContent() {
     var data = google.visualization.arrayToDataTable([
         ['Contents', 'Percent'],
-        ['Work', 11],
-        ['Eat', 2],
-        ['Commute', 2],
-        ['Watch TV', 2],
-        ['Sleep', 7]
+        ['ドットインストール', 30],
+        ['N予備校', 50],
+        ['POSSE課題', 20],
     ]);
 
     var options = {
-        chartArea:{width:'100%',height:'100%'},
-        title: 'My Daily Activities',
+        chartArea: { width: '100%', height: '100%' },
+        // title: 'My Daily Activities',
         pieHole: 0.5,
         legend:
-        { position: 'none'},
+            { position: 'none' },
         slices: {
             0: { color: '#0A45EC' },
             1: { color: '#0F71BD' },
             2: { color: '#20BDDE' },
         },
         pieSliceBorderColor: 'none'
+
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('donutchart-content'));
