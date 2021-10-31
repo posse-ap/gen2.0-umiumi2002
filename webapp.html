@@ -10,17 +10,20 @@
     <link rel="stylesheet" href="webapp.css">
     <title>WEBAPP</title>
     <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.j/s"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript"></script>
 </head>
 
 <body>
     <header>
         <div class="all-header">
-        <div class="site-header">
-            <img src="./img/posselogo.jpg" alt="POSSEロゴ">
-            <h1>4th week</h1>
-            <button class="button" id="post">記録・投稿</button>
-        </div>
+            <div class="site-header">
+                <img src="./img/posselogo.jpg" alt="POSSEロゴ">
+                <h1>4th week</h1>
+                <button class="button" id="post">記録・投稿</button>
+            </div>
         </div>
     </header>
     <main>
@@ -42,25 +45,27 @@
                         <p class="number">1348</p>
                         <p class="hour">hour</p>
                     </div>
+                </div>
 
-                </div>
-                <div class="graph">
+                <canvas class="graph" id="chart_div">
                     <!-- <img src="./img/posselogo.jpg" alt="グラフ"> -->
-                </div>
+                </canvas>
             </div>
             <div class="rightside">
                 <div class="language">
                     <p class="number">学習言語</p>
+                    <div id="donutchart-language"></div>
                 </div>
                 <div class="contents">
                     <p class="number">学習コンテンツ</p>
+                    <div id="donutchart-content" class="circle"></div>
                 </div>
             </div>
         </div>
         <div class="underside">
-            <button><</button>
-            <p>2021年10月</p>
-            <button>></button>
+            <button>＜</button>
+                    <p>2021年10月</p>
+                    <button>></button>
         </div>
         <div class="modal">
             <span class="close-btn"></span>
@@ -101,8 +106,10 @@
                     </div>
                     <p>Twitter用コメント</p>
                     <textarea name="" id="" class="twitter-comment" cols="30" rows="10"></textarea>
-                    <div class="sharebutton"><input type="checkbox"><p>Twitterにシェアする</p></div>
-                    
+                    <div class="sharebutton"><input type="checkbox">
+                        <p>Twitterにシェアする</p>
+                    </div>
+
                 </div>
             </div>
             <div class="postbutton">
@@ -112,9 +119,9 @@
         <div class="loading">
             <span class="close-btn"></span>
             <div class="a">
-            <p>Awesome!!</p>
-            <div class="check-text">✓</div>
-            <p>記録・投稿<br>完了しました</p>
+                <p>Awesome!!</p>
+                <div class="check-text">✓</div>
+                <p>記録・投稿<br>完了しました</p>
             </div>
 
         </div>
