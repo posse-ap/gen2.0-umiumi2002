@@ -47,40 +47,52 @@
                     </div>
                 </div>
 
-                <div class="graph" id="chart_div">
-                    <!-- <img src="./img/posselogo.jpg" alt="グラフ"> -->
-                </div>
+                <div class="graph" id="chart_div"></div>
             </div>
             <div class="rightside">
                 <div class="language">
                     <p class="number blank">学習言語</p>
                     <div id="donutchart-language"></div>
                     <div class="legend">
-                        <p class="item1">●</p><legend>Html</legend>
-                        <p class="item2">●</p><legend>CSS</legend>
-                        <p class="item3">●</p><legend>JavaScript</legend>
-                        <p class="item4">●</p><legend>PHP</legend>
-                        <p class="item5">●</p><legend>Laravel</legend>
-                        <p class="item6">●</p><legend>SQL</legend>
-                        <p class="item7">●</p><legend>SHELL</legend>
-                        <p class="item8">●</p><legend>情報システム基礎知識<br>(その他)</legend>
+                        <p class="item1">●</p>
+                        <legend>Html</legend>
+                        <p class="item2">●</p>
+                        <legend>CSS</legend>
+                        <p class="item3">●</p>
+                        <legend>JavaScript</legend>
+                        <p class="item4">●</p>
+                        <legend>PHP</legend>
+                        <p class="item5">●</p>
+                        <legend>Laravel</legend>
+                        <p class="item6">●</p>
+                        <legend>SQL</legend>
+                        <p class="item7">●</p>
+                        <legend>SHELL</legend>
+                        <p class="item8">●</p>
+                        <legend>情報システム基礎知識<br>(その他)</legend>
                     </div>
                 </div>
                 <div class="contents">
                     <p class="number blank">学習コンテンツ</p>
                     <div id="donutchart-content"></div>
                     <div class="legend">
-                        <p class="item1">●</p><legend>ドットインストール</legend>
-                        <p class="item2">●</p><legend>N予備校</legend>
-                        <p class="item3">●</p><legend>POSSE課題</legend>
+                        <p class="item1">●</p>
+                        <legend>ドットインストール</legend>
+                        <p class="item2">●</p>
+                        <legend>N予備校</legend>
+                        <p class="item3">●</p>
+                        <legend>POSSE課題</legend>
                     </div>
                 </div>
             </div>
         </div>
         <div class="underside">
-            <button>＜</button>
+            <button class="next">＜</button>
             <p>2021年10月</p>
-            <button>＞</button>
+            <button class="next">＞</button>
+        </div>
+        <div>
+            <button class="responsiveButton" id="responsivePost">記録・投稿</button>
         </div>
         <div class="modal">
             <span class="close-btn"></span>
@@ -88,7 +100,8 @@
                 <div class="modal-left">
                     <p>学習日</p>
                     <div class="calendar">
-                        <input type="text" name="datepicker" class="datepicker" value="">
+                        <!-- <input type="text" name="datepicker" class="datepicker" value=""> -->
+                        <input id="date" type="date" name="date">
                         <div class="calendar__modal">
                         </div>
                     </div>
