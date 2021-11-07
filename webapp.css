@@ -9,6 +9,7 @@ body {
     max-width: 100%;
 }
 
+
 /* .header {
     position: fixed;
     top: 0;
@@ -20,6 +21,7 @@ body {
 
 .all-header {
     width: 100%;
+    box-sizing: border-box;
     /* display: flex; */
     /* justify-content: center; */
     background: white;
@@ -27,7 +29,7 @@ body {
     top: 0;
     left: 0;
     height: 64px;
-    z-index: 100000;
+    z-index: 999;
     box-shadow: 3px 3px 3px rgb(204 204 204);
 }
 
@@ -40,7 +42,6 @@ body {
     width: 100%;
     /* background: white; */
     /* padding: 0 20px; */
-    
 }
 
 .site-header img {
@@ -57,7 +58,7 @@ body {
 }
 
 .button {
-    background: linear-gradient(to right,#0f71bc,#3ccfff);
+    background: linear-gradient(to right, #0f71bc, #3ccfff);
     color: white;
     border-radius: 20px;
     /* border: #1E90FF; */
@@ -72,13 +73,15 @@ body {
     transition: 10s;
 }
 
+
 /* body */
+
 main {
     margin-top: 64px;
 }
 
 .all-container {
-    width: 100%;
+    /* box-sizing: border-box; */
     display: flex;
     justify-content: center;
     z-index: 1;
@@ -90,6 +93,7 @@ main {
 .leftside {
     width: 50%;
     margin-left: 50px;
+    box-sizing: border-box;
 }
 
 .studies {
@@ -98,6 +102,7 @@ main {
     margin-top: 20px;
     /* margin-left: 20px; */
     gap: 20px;
+    width: 100%;
 }
 
 .studytime {
@@ -110,11 +115,9 @@ main {
     border-radius: 10px;
 }
 
-
 .date {
     color: darkblue;
     text-align: center;
-    
 }
 
 .number {
@@ -148,12 +151,12 @@ main {
     margin-right: 50px;
     display: flex;
     gap: 20px;
-    
+    box-sizing: border-box;
 }
 
 .language {
     /* margin: 0 20px; */
-    width: 100%;
+    width: 49%;
     padding: 1em 20px;
     border: 1px solid #a9a9a9;
     box-shadow: 1.5px 1.5px 2px #696969;
@@ -163,7 +166,7 @@ main {
 
 .contents {
     /* margin: 0 20px; */
-    width: 100%;
+    width: 49%;
     /* height: 300px; */
     padding: 1em 20px;
     border: 1px solid #a9a9a9;
@@ -182,28 +185,34 @@ main {
     padding-top: 30px;
 }
 
-
 .item1 {
     color: #0A45EC
 }
+
 .item2 {
     color: #0F71BD
 }
+
 .item3 {
     color: #20BDDE
 }
+
 .item4 {
     color: rgb(16, 150, 24)
 }
+
 .item5 {
     color: rgb(153, 0, 153)
 }
+
 .item6 {
     color: rgb(0, 153, 198)
 }
+
 .item7 {
     color: rgb(221, 68, 119)
 }
+
 .item8 {
     color: rgb(102, 170, 0)
 }
@@ -230,11 +239,11 @@ legend {
     display: none;
 }
 
-.responsiveButton {
-   
-}
+.responsiveButton {}
+
 
 /* モーダル */
+
 .modal {
     position: absolute;
     top: 84px;
@@ -253,28 +262,35 @@ legend {
     position: relative;
     width: 30px;
     height: 30px;
-    border: 2px solid #a9a9a9; /* 枠の調整 */
-    border-radius: 50%;  /* 丸みの度合い */
-    background: #fff; /* ボタンの背景色 */
+    border: 2px solid #a9a9a9;
+    /* 枠の調整 */
+    border-radius: 50%;
+    /* 丸みの度合い */
+    background: #fff;
+    /* ボタンの背景色 */
     /* margin-left: 850px ; */
 }
 
-.close-btn::before, .close-btn::after {
+.close-btn::before,
+.close-btn::after {
     content: "";
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 3px; /* 棒の幅（太さ） */
-    height: 22px; /* 棒の高さ */
-    background: #a9a9a9; /* バツ印の色 */
+    width: 3px;
+    /* 棒の幅（太さ） */
+    height: 22px;
+    /* 棒の高さ */
+    background: #a9a9a9;
+    /* バツ印の色 */
 }
 
 .close-btn::before {
-    transform: translate(-50%,-50%) rotate(45deg);
+    transform: translate(-50%, -50%) rotate(45deg);
 }
 
 .close-btn::after {
-    transform: translate(-50%,-50%) rotate(-45deg);
+    transform: translate(-50%, -50%) rotate(-45deg);
 }
 
 .modal-contents {
@@ -330,11 +346,12 @@ legend {
     width: 100%;
     background: rgba(0, 0, 0, 0.08);
     border-radius: 10px;
-    border: rgba(0, 0, 0, 0.08);;
+    border: rgba(0, 0, 0, 0.08);
+    ;
 }
 
 .twitter-comment {
-    width:100%;
+    width: 100%;
     /* height: 100px; */
     background: rgba(0, 0, 0, 0.08);
     border: 1px;
@@ -357,23 +374,181 @@ legend {
     padding-left: 10px;
 }
 
-
 .contact__form__item label {
     padding: 10px;
 }
 
+input[type="checkbox"] {
+
+    display: none;
+
+    /*デフォルトのチェックボックスを非表示にする*/
+
+}
+
+input[name="content"]+label {
+
+    position: relative;
+
+    padding-left: 20px;
+
+    /*チェックボックス分の隙間を作る*/
+
+}
+
+input[name="content"]+label::before {
+
+    content: "";
+
+    display: block;
+
+    width: 15px;
+
+    height: 15px;
+
+    position: absolute;
+
+    top: 50%;
+
+    left: 0;
+
+    transform: translateY(-50%);
+
+    /*中央ぞろえにする*/
+
+    border: 3px solid #a9a9a9;
+
+    /*お好きなや太さで。*/
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    /*ポインターを表示する*/
+
+}
+
+input[name="content"]:checked+label::before {
+
+    /*チェックしたときの箱の色を変える*/
+
+    background: cornflowerblue;
+    border: 3px solid cornflowerblue;
+
+}
+
+input[name="content"]:checked+label::after {
+
+    /*チェックの✓をつくる*/
+
+    content: "";
+
+    display: block;
+
+    width: 10px;
+
+    height: 7px;
+
+    box-sizing: border-box;
+
+    border-bottom: 2px solid #fff;
+
+    border-left: 2px solid #fff;
+
+    position: absolute;
+
+    /*ここから下は位置を調整する*/
+
+    top: 45%;
+
+    left: 25%;
+
+    /*箱を斜めに傾けてチェック表示にする*/
+
+    -webkit-transform: rotate(-45deg);
+
+    transform: rotate(-45deg) translateY(-50%);
+
+}
+
+
+
+
+
+/* input[name="content"]+label {
+        position: relative;
+        padding-left: 20px;
+        /*チェックボックス分の隙間を作る*/
+
+
+/* } */
+
+
+
+
+
+/* .center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    } */
+
+
+/* .radious{
+	padding-left:24px;
+	position:relative;
+}
+
+.radious:before,
+.radious:after{
+	content:"";
+	display:block;
+	position:absolute;
+}
+.radious:before{
+	width:16px;
+	height:16px;
+	border-radius:8px;
+	background:#ffffff;
+	border:1px solid #000000;
+	left:0;top:2px;
+}
+.radious:after{
+	border-left:2px solid #ff0000;
+	border-bottom:2px solid #ff0000;
+	width:6px;
+	height:3px;
+	-webkit-transform:rotate(-45deg);
+	transform:rotate(-45deg);
+	left:5px;
+	top:7px;
+} */
+
 .postbutton {
+    display: flex;
     padding: 10px 0 20px 0;
     text-align: center;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+}
+
+#TWEET {
+    margin-left: auto;
+    margin-right: auto;
+    text-decoration: none;
 }
 
 .loading {
     position: absolute;
-    z-index: 1000; 
-    width: 100%;
-    height: 100%;
-    top: 64px;
-    margin: 0;
+    z-index: 998;
+    max-width: 900px;
+    height: 490px;
+    top: 84px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 10px;
     padding: 0;
     background: #fff;
     display: none;
@@ -383,6 +558,52 @@ legend {
     margin-top: 10px;
     color: #bde360;
     text-align: center;
+}
+
+
+/* ローディング画面 */
+
+
+/* .loading-area {
+    position: absolute;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: #333333;
+} */
+
+.circle .hide {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 5000ms;
+}
+
+.loading-area .circle {
+    /* display: block; */
+    display: none;
+    /* position: relative; */
+    top: calc( 50% - 20px);
+    left: calc(50% - 20px);
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+    border: 7px solid #444444;
+    border-top: 7px solid #5ae1e5;
+    border-radius: 50px;
+    animation: loading 700ms linear 0ms infinite normal both;
+    z-index: 998;
+}
+
+@keyframes loading {
+    0% {
+        transform: rotate( 0deg);
+    }
+    100% {
+        transform: rotate( 360deg);
+    }
 }
 
 .a {
@@ -403,72 +624,60 @@ legend {
     margin-right: auto;
 }
 
+
 /* .loading.hide {
     opacity: 0;
     pointer-events: none;
     transition: opacity 500ms;
 } */
 
-
 @media screen and (max-width: 960px) {
     .all-container {
         /* max-width: 960px; */
     }
-
     .graph {
         width: 36vw;
     }
-
     .rightside {
         /* margin-left: 5vw; */
     }
-
     .modal {
         width: 90%;
     }
-
-
 }
-@media screen and (max-width: 768px) {
-}
-@media screen and (max-width: 768px) {
 
+@media screen and (max-width: 768px) {}
+
+@media screen and (max-width: 768px) {
     .site-header img {
         width: 100px;
     }
-
     .button {
         margin-right: 10vw;
     }
-    
     .all-container {
         flex-direction: column;
         width: 100%;
         /* margin: auto; */
     }
-
     .leftside {
         width: 100%;
         padding-left: 20px;
         padding-right: 20px;
         margin: 0;
     }
-
     .studies {
         gap: 16px;
     }
-
     .graph {
         margin-left: auto;
         margin-right: auto;
         width: 70%;
     }
-
     #chart_div {
         object-fit: contain;
         background-size: cover;
     }
-
     .rightside {
         width: 100%;
         height: 400px;
@@ -476,30 +685,30 @@ legend {
         padding-right: 20px;
         margin: 0;
     }
-
     .language {
-        height: 405px;
+        /* height: 40vh; */
     }
-
     .contents {
-        height: 405px;
+        /* height: 40vh; */
     }
-
+    .legend {
+        padding-top: 10px;
+    }
     .button {
         display: none;
     }
-
+    #TWEET {
+        display: block;
+    }
     .underside {
         width: 100%;
         margin-top: 50px;
     }
-
     #responsivePost {
         display: block;
     }
-
     .responsiveButton {
-        background: linear-gradient(to right,#0f71bc,#3ccfff);
+        background: linear-gradient(to right, #0f71bc, #3ccfff);
         color: white;
         border-radius: 20px;
         /* border: #1E90FF; */
@@ -508,32 +717,44 @@ legend {
         margin: 20px auto;
         padding: 10px 50px;
     }
-
     .modal {
         /* width: 100%; */
     }
-
     .modal-left {
         margin-left: auto;
         margin-right: auto;
         width: 70%;
     }
-
     .modal-contents {
         flex-direction: column;
         justify-content: center;
         gap: 0;
     }
-
     .modal-right {
         margin-left: auto;
         margin-right: auto;
         width: 70%;
     }
-
+    .loading {
+        width: 90%;
+        height: 788px;
+    }
 }
+
 @media screen and (max-width: 480px) {
     .button {
         margin-right: 0;
+    }
+    .blank {
+        margin-bottom: 0;
+    }
+    .language {
+        /* height: 55vh; */
+    }
+    .contents {
+        /* height: 50vh; */
+    }
+    .underside {
+        margin-top: 15vh;
     }
 }
