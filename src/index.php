@@ -1,0 +1,105 @@
+<?php require($_SERVER['DOCUMENT_ROOT'] . "/db_connect.php");
+// $id = htmlspecialchars($_GET["id"]);
+// jsを書き込んだとしても、ただの文字として扱ってほしい
+
+
+// prefectures
+if (isset($_GET['id'])) {
+  $id = $_GET['id'];
+  $prefectures_value =  "SELECT * FROM prefectures WHERE id = $id";
+  $prefectures = $db->query($prefectures_value)->fetchAll(PDO::FETCH_ASSOC | PDO::FETCH_UNIQUE);
+}
+echo ($prefectures[$id]["name"]);
+
+
+// questions
+// if (isset($_GET['id'])) {
+//   $id = $_GET['id'];
+//   $questions_value =  "SELECT * FROM questions WHERE prefecture_id = $id";
+//   $questions = $db->query($questions_value)->fetchAll(PDO::FETCH_ASSOC | PDO::FETCH_UNIQUE);
+// }
+// foreach ($questions as $question) {
+//   echo ($question['name']);
+// }
+// print_r($questions[$id]);
+// echo ($questions[$id]["name"]);
+
+// choices
+if (isset($_GET['id'])) {
+  $id = $_GET['id'];
+  $choices_value =  "SELECT * FROM choices WHERE prefecture_id = $id";
+  //questionidとidをイコールにしちゃうと一番の高輪しかとれなくなっちゃう・・
+  $choices = $db->query($choices_value)->fetchAll(PDO::FETCH_ASSOC | PDO::FETCH_UNIQUE);
+//１だと東京の選択肢だけ
+}
+foreach ($choices as $choice) {
+  echo (print_r($choice));
+}
+?>
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>くいじー</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+  <div class="question">
+    <?php
+    if (isset($_GET['id'])) { ?>
+      <?php
+      for ($i =1; $i<= count($choices)/3; $i++){?>
+      <h1 class="question__title">
+        <?php // 問題番号動的
+        // foreach ($ as $choice) {
+        //   echo ($choice['question_id']);
+        //   if ($choice == $choice) {
+        //     break;
+        //   }
+        echo $i; 
+        // }
+        ?>
+        .この地名はなんて読む？
+      </h1>
+      <img class="question__img" src="./img/<?php echo $id?>.png" alt="選択肢の写真">
+      <ul class="question__lists">
+      <?php $choices_counts =  "SELECT * FROM choices WHERE prefecture_id = $id AND question_id = $i"; 
+        $counts = $db->query($choices_counts)->fetchAll(PDO::FETCH_ASSOC | PDO::FETCH_UNIQUE);
+
+        $choices_corrects =  "SELECT * FROM choices WHERE prefecture_id = $id AND question_id = $i AND correct = 1";
+        $corrects = $db->query($choices_corrects)->fetchAll(PDO::FETCH_ASSOC | PDO::FETCH_UNIQUE);
+        ?>
+        <?php shuffle($counts) ?>
+        <!-- choicesは東京の選択肢全部 -->
+        <?php foreach ($counts as $index => $choice) { ?>
+          <li class="question__list <?php if ($choice['correct'] == 1) {echo 1;} else {echo 0;} ?>">
+            <?php echo $choice['name']; ?>
+          </li>
+        <?php
+        } ?>
+      </ul>
+      <div class="question__answer">
+        <p class="question__answer__text">正解！</p>
+        <p class="question__answer__text__choice">
+          正解は「
+          <?php foreach ($corrects as $correct) {
+            echo ($correct['name']);
+          } ?>
+          」です！
+        </p>
+      </div>
+      <?php }; ?>
+      <?php } else {
+        echo "URLにidが指定されていません。";
+      } ?>
+  <!-- jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="./js/index.js"></script>
+</body>
+
+</html>
