@@ -32,9 +32,9 @@ if (isset($_GET['id'])) {
   $choices = $db->query($choices_value)->fetchAll(PDO::FETCH_ASSOC | PDO::FETCH_UNIQUE);
 //１だと東京の選択肢だけ
 }
-foreach ($choices as $choice) {
-  echo (print_r($choice));
-}
+// foreach ($choices as $choice) {
+//   echo (print_r($choice));
+// }
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +44,7 @@ foreach ($choices as $choice) {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>くいじー</title>
+  <title>quizy</title>
   <link rel="stylesheet" href="./css/style.css">
 </head>
 
@@ -66,14 +66,20 @@ foreach ($choices as $choice) {
         ?>
         .この地名はなんて読む？
       </h1>
-      <img class="question__img" src="./img/<?php echo $id?>.png" alt="選択肢の写真">
-      <ul class="question__lists">
-      <?php $choices_counts =  "SELECT * FROM choices WHERE prefecture_id = $id AND question_id = $i"; 
+      <?php $choices_counts =  "SELECT * FROM choices WHERE prefecture_id = $id AND question_id = $i";
+        // 都道府県番号と、問題番号が一致している時（東京の高輪、東京の亀戸） 
         $counts = $db->query($choices_counts)->fetchAll(PDO::FETCH_ASSOC | PDO::FETCH_UNIQUE);
 
         $choices_corrects =  "SELECT * FROM choices WHERE prefecture_id = $id AND question_id = $i AND correct = 1";
+        // 都道府県番号と問題番号と正解番号が一致している時
         $corrects = $db->query($choices_corrects)->fetchAll(PDO::FETCH_ASSOC | PDO::FETCH_UNIQUE);
         ?>
+      <!-- <?php 
+        $question_id = "SELECT * FROM choices WHERE question_id = $i"; 
+        // for文でiが問題番号と一致してるから使わない
+      ?>   -->
+      <img class="question__img" src="./img/<?php echo $id?>_<?php echo $i?>.png" alt="選択肢の写真">
+      <ul class="question__lists">
         <?php shuffle($counts) ?>
         <!-- choicesは東京の選択肢全部 -->
         <?php foreach ($counts as $index => $choice) { ?>
