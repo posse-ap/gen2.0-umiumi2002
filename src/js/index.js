@@ -2,7 +2,7 @@
 var btn = document.querySelectorAll(".question__list");
 // ボタンの個数分ループ
 // 変数「i」に現在のループ回数が代入される
-for ($i = 1; $i <= count($choices) / 3; $i++) {
+// for ($i = 1; $i <= count($choices) / 3; $i++) {
   for (var i = btn.length - 1; i >= 0; i--) {
     // 各ボタンをイベントリスナーに登録
     btn[i].addEventListener("click", function () {
@@ -30,4 +30,4 @@ for ($i = 1; $i <= count($choices) / 3; $i++) {
       }
     });
   }
-}
+// }

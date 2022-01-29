@@ -74,17 +74,23 @@ if (isset($_GET['id'])) {
         // 都道府県番号と問題番号と正解番号が一致している時
         $corrects = $db->query($choices_corrects)->fetchAll(PDO::FETCH_ASSOC | PDO::FETCH_UNIQUE);
         ?>
+
       <!-- <?php 
         $question_id = "SELECT * FROM choices WHERE question_id = $i"; 
         // for文でiが問題番号と一致してるから使わない
       ?>   -->
+
       <img class="question__img" src="./img/<?php echo $id?>_<?php echo $i?>.png" alt="選択肢の写真">
+
+
       <ul class="question__lists">
         <?php shuffle($counts) ?>
-        <!-- choicesは東京の選択肢全部 -->
-        <?php foreach ($counts as $index => $choice) { ?>
-          <li class="question__list <?php if ($choice['correct'] == 1) {echo 1;} else {echo 0;} ?>">
-            <?php echo $choice['name']; ?>
+        <!-- countsは東京の選択肢全部 -->
+        <?php foreach ($counts as $count) { ?>
+          <!-- 連想配列、使う必要性？？？ foreachで選択肢をそれぞれ出力-->
+          <li class="question__list <?php if ($count['correct'] == 1) {echo 1;} else {echo 0;} ?>">
+          <!-- 正解だったらクラス名に1、不正解だったらクラス名に0が付く -->
+            <?php echo $count['name']; ?>
           </li>
         <?php
         } ?>
@@ -109,3 +115,13 @@ if (isset($_GET['id'])) {
 </body>
 
 </html>
+
+
+<!-- 問題！！！！！
+東京の一問目と二問目のjsが同時に動く
+・一問目の正解を押したとき、二問目は青くならずに正解ボックスだけ出る
+・一問目の不正解押したら、二問目は青く光って不正解ボックスが出る
+二問目を先に押しても同様
+
+
+青くするのは押したボタンだから-->
