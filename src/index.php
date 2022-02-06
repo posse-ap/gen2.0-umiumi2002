@@ -95,7 +95,7 @@ if (isset($_GET['id'])) {
         <?php
         } ?>
       </ul>
-      <div class="question__answer">
+      <div class="question__answer question__answer_<?php echo $i ?>">
         <p class="question__answer__text">正解！</p>
         <p class="question__answer__text__choice">
           正解は「
