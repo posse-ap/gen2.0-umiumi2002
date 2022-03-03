@@ -83,12 +83,12 @@ if (isset($_GET['id'])) {
       <img class="question__img" src="./img/<?php echo $id?>_<?php echo $i?>.png" alt="選択肢の写真">
 
 
-      <ul class="question__lists">
+      <ul class="question__lists" id="container">
         <?php shuffle($counts) ?>
         <!-- countsは東京の選択肢全部 -->
         <?php foreach ($counts as $count) { ?>
           <!-- 連想配列、使う必要性？？？ foreachで選択肢をそれぞれ出力-->
-          <li class="question__list <?php if ($count['correct'] == 1) {echo 1;} else {echo 0;} ?>">
+          <li class="question__list question__list_<?php echo $count['question_id'] ?>_<?php echo $count['choice_id'] ?> question__list_<?php echo $count['question_id'] ?>" onclick=check(<?php echo $count['question_id'] ?>,<?php echo $count['choice_id'] ?>,<?php echo $count['correct'] ?>)>
           <!-- 正解だったらクラス名に1、不正解だったらクラス名に0が付く -->
             <?php echo $count['name']; ?>
           </li>
@@ -96,7 +96,7 @@ if (isset($_GET['id'])) {
         } ?>
       </ul>
       <div class="question__answer question__answer_<?php echo $i ?>">
-        <p class="question__answer__text">正解！</p>
+        <p class="question__answer__text"></p>
         <p class="question__answer__text__choice">
           正解は「
           <?php foreach ($corrects as $correct) {
