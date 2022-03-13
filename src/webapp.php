@@ -1,3 +1,5 @@
+<?php require($_SERVER['DOCUMENT_ROOT'] . "/db_connect.php");?>
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -5,9 +7,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
-    <link rel="stylesheet" href="webapp.css">
+    <link rel="stylesheet" href="./css/webapp.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <title>WEBAPP</title>
     <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.0.min.js"></script> -->
@@ -35,7 +37,10 @@
                 <div class="studies">
                     <div class="studytime">
                         <p class="date">Today</p>
-                        <p class="number">3</p>
+                        <?php $times = "SELECT * FROM study_time WHERE study_date = CURDATE();";
+                        $time = $db->query($times)->fetchAll(PDO::FETCH_ASSOC | PDO::FETCH_UNIQUE);
+                        ?>
+                        <p class="number"><?php echo $time ?></p>
                         <p class="hour">hour</p>
                     </div>
                     <div class="studytime">
@@ -91,7 +96,8 @@
         </div>
         <div class="underside">
             <button class="next">＜</button>
-            <p>2021年10月</p>
+            <span>年</span>
+            <span>月</span>
             <button class="next">＞</button>
         </div>
         <div>
@@ -165,7 +171,7 @@
         </div>
     </main>
 
-    <script src="webapp.js"></script>
+    <script src="./js/webapp.js"></script>
 </body>
 
 </html>
