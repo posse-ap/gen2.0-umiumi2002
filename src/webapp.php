@@ -37,20 +37,46 @@
                 <div class="studies">
                     <div class="studytime">
                         <p class="date">Today</p>
-                        <?php $times = "SELECT * FROM study_time WHERE study_date = CURDATE();";
-                        $time = $db->query($times)->fetchAll(PDO::FETCH_ASSOC | PDO::FETCH_UNIQUE);
+                       <?php 
+                        $today = date("Y-m-d");
+                    //    var_dump($today);
+                        $stmt = $db -> prepare("SELECT study_time FROM webapps WHERE study_date = :today");
+                        $stmt -> bindParam(":today",$today);
+                        $stmt -> execute();
+                        $study_time = $stmt -> fetchColumn();
+                        //stmtにobject型で入っているデータを単一にして代入する
+                        //fetch＝配列返される
                         ?>
-                        <p class="number"><?php echo $time ?></p>
+                        <p class="number"><?php echo $study_time ?></p>
                         <p class="hour">hour</p>
                     </div>
                     <div class="studytime">
                         <p class="date">Month</p>
-                        <p class="number">120</p>
+                        <?php 
+                        $month = date("Y-m");
+                        $stmt = $db -> prepare("SELECT sum(study_time) FROM webapps WHERE study_date LIKE '2022-03%'");
+                        $stmt -> bindParam(":month",$month);
+                        $stmt -> execute();
+                        $month_study_time = $stmt -> fetchColumn();
+
+
+                            // $month = "SELECT sum(study_time) FROM webapps YEAR(study_date)=DATE('Y') AND MONTH(study_date)= DATE('m')";
+                            // $month = "SELECT sum(study_time) FROM webapps WHERE DATE('Y', strtotime(study_date))=2022";
+                            // $stmt = $db -> query($month)->fetchColumn();
+                            // print_r($stmt);
+                        ?>
+                        <p class="number"><?php echo $month_study_time ?></p>
                         <p class="hour">hour</p>
                     </div>
                     <div class="studytime">
                         <p class="date">Total</p>
-                        <p class="number">1348</p>
+                        <?php 
+                             $stmt = $db -> prepare("SELECT sum(study_time) FROM webapps");
+                            //  $stmt -> bindParam(":month",$month);
+                             $stmt -> execute();
+                             $all_study_time = $stmt -> fetchColumn();
+                        ?>
+                        <p class="number"><?php echo $all_study_time ?></p>
                         <p class="hour">hour</p>
                     </div>
                 </div>
@@ -129,7 +155,6 @@
                     </div>
                     <p>学習言語（複数選択可）</p>
                     <div class="contact__form__item">
-                        <!-- <dd> -->
                         <input type="checkbox" id="check-language1" name="content" value=""><label for="check-language1"></label>HTML
                         <input type="checkbox" id="check-language2" name="content" value=""><label for="check-language2"></label>CSS
                         <input type="checkbox" id="check-language3" name="content" value=""><label for="check-language3"></label>JavaScript
@@ -138,7 +163,6 @@
                         <input type="checkbox" id="check-language6" name="content" value=""><label for="check-language6"></label>SQL
                         <input type="checkbox" id="check-language7" name="content" value=""><label for="check-language7"></label>SHELL
                         <input type="checkbox" id="check-language8" name="content" value=""><label for="check-language8"></label>情報システム基礎知識
-                        <!-- </dd> -->
                     </div>
                 </div>
                 <div class="modal-right">
@@ -170,6 +194,85 @@
             <span class="circle" id="circle"></span>
         </div>
     </main>
+    <script>
+        //円グラフ 
+        google.charts.load("current", { packages: ["corechart"] });
+        google.charts.setOnLoadCallback(drawChartLanguage);
+
+function drawChartLanguage() {
+
+    <?php
+    $stmt = $db -> prepare("SELECT sum(study_time) FROM webapps WHERE study_language LIKE 'HTML'");
+    //7
+    $stmt -> execute();
+    $html = $stmt -> fetchColumn();
+    ?>
+    var data = google.visualization.arrayToDataTable([
+        ['Contents', 'Percent'],
+        ['HTML', <?php echo $html ?>],
+        ['CSS', 5.9],
+        ['JavaScript', 23.5],
+        ['PHP', 14.7],
+        ['Laravel', 8.8],
+        ['SQL', 29.4],
+        ['SHELL', 10.7],
+        ['情報システム基礎知識（その他）', 0]
+    ]);
+
+    var options = {
+        chartArea: { width: '100%', height: '100%' },
+        title: 'My Daily Activities',
+        pieHole: 0.5,
+        legend: { position: 'none' },
+        slices: {
+            0: { color: '#0A45EC' },
+            1: { color: '#0F71BD' },
+            2: { color: '#20BDDE' },
+        },
+        pieSliceBorderColor: 'none',
+        responsive: true,
+    };
+    var chart = new google.visualization.PieChart(document.getElementById('donutchart-language'));
+    chart.draw(data, options);
+}
+
+
+google.charts.load("current", { packages: ["corechart"] });
+google.charts.setOnLoadCallback(drawChartContent);
+
+function drawChartContent() {
+    var data = google.visualization.arrayToDataTable([
+        ['Contents', 'Percent'],
+        ['ドットインストール', 30],
+        ['N予備校', 50],
+        ['POSSE課題', 20],
+    ]);
+
+    var options = {
+        chartArea: { width: '100%', height: '100%' },
+        pieHole: 0.5,
+        legend: { position: 'none' },
+        slices: {
+            0: { color: '#0A45EC' },
+            1: { color: '#0F71BD' },
+            2: { color: '#20BDDE' },
+        },
+        pieSliceBorderColor: 'none',
+        responsive: true,
+
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('donutchart-content'));
+    chart.draw(data, options);
+}
+
+//再描画
+window.onresize = function() {
+    drawBasic();
+    drawChartLanguage();
+    drawChartContent();
+}
+</script>
 
     <script src="./js/webapp.js"></script>
 </body>
