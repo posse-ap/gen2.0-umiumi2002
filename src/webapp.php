@@ -122,8 +122,8 @@
         </div>
         <div class="underside">
             <button class="next">＜</button>
-            <span>年</span>
-            <span>月</span>
+            <span><?php echo date('Y'); ?>年</span>
+            <span><?php echo date('m'); ?>月</span>
             <button class="next">＞</button>
         </div>
         <div>
@@ -194,12 +194,63 @@
             <span class="circle" id="circle"></span>
         </div>
     </main>
+    <?php 
+    // $year = date('Y');
+    $month = date("Y-m");
+    for ($i=1; $i<= 31; $i++) {
+    $stmt = $db -> prepare("SELECT study_time FROM webapps WHERE study_date = ?");
+    $stmt->bindValue(1, "$month-[$i]");
+    $stmt -> execute();
+    $barChart_[$i] = $stmt -> fetchAll();
+    // print_r('<pre>');    
+    // print_r($barChart_[$i][0][0]);
+    // print_r('</pre>');
+}
+    ?>
     <script>
+        
+    //棒グラフ
+    google.charts.load('current', { packages: ['corechart', 'bar'] });
+    google.charts.setOnLoadCallback(drawBasic);
+
+    function drawBasic() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('number', 'Day');
+    data.addColumn('number', 'Study Time');
+
+data.addRows([
+    <?php  for ($j=1; $j<= 31; $j++ ) { ?>
+  [<?php echo $j; ?>, <?php echo $barChart_[$j][0][0]; ?>],
+    <?php }; ?>    
+    ])
+    var options = {
+        chartArea: { left: 30, top: 20, width: '100%', height: '75%' },
+        hAxis: {
+            ticks: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30],
+            viewWindow: {
+                min: 0,
+                max: 32
+            },
+            gridlines: { color: 'none' },
+            textStyle: { color: '#b8cddf' },
+        },
+        vAxis: {
+            gridlines: { color: 'none' },
+            format: '#h',
+            ticks: [0, 2, 4, 6, 8, 10],
+            textStyle: { color: '#b8cddf' },
+        }
+    };
+
+    var chart = new google.visualization.ColumnChart(
+        document.getElementById('chart_div'));
+    chart.draw(data, options);
+}
+
+
         //円グラフ 
         google.charts.load("current", { packages: ["corechart"] });
         google.charts.setOnLoadCallback(drawChartLanguage);
-
-function drawChartLanguage() {
 
     <?php
     $stmt = $db -> prepare("SELECT sum(study_time) FROM webapps WHERE study_language LIKE 'HTML'");
@@ -207,16 +258,60 @@ function drawChartLanguage() {
     $stmt -> execute();
     $html = $stmt -> fetchColumn();
     ?>
+    <?php
+    $stmt = $db -> prepare("SELECT sum(study_time) FROM webapps WHERE study_language LIKE 'CSS'");
+    //6になるはず
+    $stmt -> execute();
+    $css = $stmt -> fetchColumn();
+    ?>
+    <?php
+    $stmt = $db -> prepare("SELECT sum(study_time) FROM webapps WHERE study_language LIKE 'JavaScript'");
+    //10になるはず
+    $stmt -> execute();
+    $javaScript = $stmt -> fetchColumn();
+    ?>
+    <?php
+    $stmt = $db -> prepare("SELECT sum(study_time) FROM webapps WHERE study_language LIKE 'PHP'");
+    //になるはず
+    $stmt -> execute();
+    $php = $stmt -> fetchColumn();
+    ?>
+    <?php
+    $stmt = $db -> prepare("SELECT sum(study_time) FROM webapps WHERE study_language LIKE 'Laravel'");
+    //3になるはず
+    $stmt -> execute();
+    $laravel = $stmt -> fetchColumn();
+    ?>
+    <?php
+    $stmt = $db -> prepare("SELECT sum(study_time) FROM webapps WHERE study_language LIKE 'SQL'");
+    //4になるはず
+    $stmt -> execute();
+    $sql = $stmt -> fetchColumn();
+    ?>
+    <?php
+    $stmt = $db -> prepare("SELECT sum(study_time) FROM webapps WHERE study_language LIKE 'SHELL'");
+    //3になるはず
+    $stmt -> execute();
+    $shell = $stmt -> fetchColumn();
+    ?>
+    <?php
+    $stmt = $db -> prepare("SELECT sum(study_time) FROM webapps WHERE study_language LIKE '情報システム基礎知識'");
+    //5になるはず
+    $stmt -> execute();
+    $infoSystem = $stmt -> fetchColumn();
+    ?>
+
+function drawChartLanguage() {
     var data = google.visualization.arrayToDataTable([
         ['Contents', 'Percent'],
         ['HTML', <?php echo $html ?>],
-        ['CSS', 5.9],
-        ['JavaScript', 23.5],
-        ['PHP', 14.7],
-        ['Laravel', 8.8],
-        ['SQL', 29.4],
-        ['SHELL', 10.7],
-        ['情報システム基礎知識（その他）', 0]
+        ['CSS', <?php echo $css ?>],
+        ['JavaScript', <?php echo $javaScript ?>],
+        ['PHP', <?php echo $php ?>],
+        ['Laravel', <?php echo $laravel ?>],
+        ['SQL', <?php echo $sql ?>],
+        ['SHELL', <?php echo $shell ?>],
+        ['情報システム基礎知識（その他）', <?php echo $infoSystem ?>]
     ]);
 
     var options = {
@@ -240,12 +335,28 @@ function drawChartLanguage() {
 google.charts.load("current", { packages: ["corechart"] });
 google.charts.setOnLoadCallback(drawChartContent);
 
+<?php
+    $stmt = $db -> prepare("SELECT sum(study_time) FROM webapps WHERE study_content = 'ドットインストール'");
+    $stmt -> execute();
+    $dotInstall = $stmt -> fetchColumn();
+    ?>
+<?php
+    $stmt = $db -> prepare("SELECT sum(study_time) FROM webapps WHERE study_content = 'N予備校'");
+    $stmt -> execute();
+    $nyobikou = $stmt -> fetchColumn();
+    ?>
+<?php
+    $stmt = $db -> prepare("SELECT sum(study_time) FROM webapps WHERE study_content = 'POSSE課題'");
+    $stmt -> execute();
+    $posse = $stmt -> fetchColumn();
+    ?>
+
 function drawChartContent() {
     var data = google.visualization.arrayToDataTable([
         ['Contents', 'Percent'],
-        ['ドットインストール', 30],
-        ['N予備校', 50],
-        ['POSSE課題', 20],
+        ['ドットインストール', <?php echo $dotInstall ?>],
+        ['N予備校', <?php echo $nyobikou ?>],
+        ['POSSE課題', <?php echo $posse ?>]
     ]);
 
     var options = {
