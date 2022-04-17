@@ -5,8 +5,24 @@
 // btns = container.getElementsByTagName('li');
 // //htmlcollectionは配列じゃない⇒
 // const Btns = Array.prototype.slice.call(btns);
+
+/**
+ * [description]
+ */
+
 //配列にする
+
+/**
+ * @param
+ */
 console.log('i');
+
+/**
+ * check関数 
+ * @param  {Number} question_id 問題番号
+ * @param  {Number} choice_id 選択肢番号
+ * @param  {Number} valid 正解番号
+ */
 function check (question_id, choice_id, valid) {
   console.log('s');
   if (valid === 1) {
