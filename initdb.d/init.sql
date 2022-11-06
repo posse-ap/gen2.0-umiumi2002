@@ -1,6 +1,6 @@
-DROP SCHEMA IF EXISTS ph2_webapp;
-CREATE SCHEMA ph2_webapp;
-use ph2_webapp;
+DROP SCHEMA IF EXISTS ph3_webapp;
+CREATE SCHEMA ph3_webapp;
+use ph3_webapp;
 
 DROP TABLE IF EXISTS webapps;
 CREATE TABLE webapps (
