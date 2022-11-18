@@ -25,7 +25,7 @@
             <div class="site-header">
                 <img src="{{ asset('/img/posselogo.jpg') }}" alt="POSSEロゴ">
                 <h1>4th week</h1>
-                    <p>{{ $user->name }}さん</p>
+                <p>{{ $user->name }}さん</p>
                 <form action="{{ route('logout') }}" method="post">
                     @csrf
                     <input type="submit" value="ログアウト" class="logout">
@@ -36,41 +36,92 @@
     </header>
     <main>
         <div class="all-container">
-        
+
             <div class="leftside">
                 <div class="studies">
                     <div class="studytime">
                         <p class="date">Today</p>
-                        @foreach($today_hours as $today_hour)
-                        {{-- @if($today_hour==null)
+                        @foreach ($today_hours as $today_hour)
+                            {{-- @if ($today_hour == null)
                         <p class="number">
                            
                         0
                         @else --}}
-                        <p class="number">
-                            {{ $today_hour->today_hour }}  
-                        </p>
-                        {{-- @endif --}}
+                            <p class="number">
+                                {{ $today_hour->today_hour }}
+                            </p>
+                            {{-- @endif --}}
                         @endforeach
                         <p class="hour">hour</p>
                     </div>
                     <div class="studytime">
                         <p class="date">Month</p>
-                        @foreach($month_hours as $month_hour)
-                        <p class="number">{{ $month_hour->month_hour }}</p>
+                        @foreach ($month_hours as $month_hour)
+                            <p class="number">{{ $month_hour->month_hour }}</p>
                         @endforeach
                         <p class="hour">hour</p>
                     </div>
                     <div class="studytime">
                         <p class="date">Total</p>
-                        @foreach($total_hours as $total_hour)
-                        <p class="number">{{ $total_hour->total_hour }}</p>
+                        @foreach ($total_hours as $total_hour)
+                            <p class="number">{{ $total_hour->total_hour }}</p>
                         @endforeach
                         <p class="hour">hour</p>
                     </div>
                 </div>
-
                 <div class="graph" id="chart_div"></div>
+                <script>
+                    //棒グラフ
+                    google.charts.load('current', {
+                        packages: ['corechart', 'bar']
+                    });
+                    google.charts.setOnLoadCallback(drawBasic);
+
+                    function drawBasic() {
+                        var data = new google.visualization.DataTable();
+                        data.addColumn('number', 'Day');
+                        data.addColumn('number', 'Study Time');
+
+                        data.addRows([
+                           ///////
+                        ])
+                        var options = {
+                            chartArea: {
+                                left: 30,
+                                top: 20,
+                                width: '100%',
+                                height: '75%'
+                            },
+                            hAxis: {
+                                ticks: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30],
+                                viewWindow: {
+                                    min: 0,
+                                    max: 32
+                                },
+                                gridlines: {
+                                    color: 'none'
+                                },
+                                textStyle: {
+                                    color: '#b8cddf'
+                                },
+                            },
+                            vAxis: {
+                                gridlines: {
+                                    color: 'none'
+                                },
+                                format: '#h',
+                                ticks: [0, 2, 4, 6, 8, 10],
+                                textStyle: {
+                                    color: '#b8cddf'
+                                },
+                            }
+                        };
+
+                        var chart = new google.visualization.ColumnChart(
+                            document.getElementById('chart_div'));
+                        chart.draw(data, options);
+                    }
+                </script>
             </div>
             <div class="rightside">
                 <div class="language">
@@ -195,7 +246,11 @@
             <span class="circle" id="circle"></span>
         </div>
     </main>
-   
+
+
+
+
+    
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="{{ asset('/js/webapp.js') }}"></script>
