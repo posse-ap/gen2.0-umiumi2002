@@ -19,6 +19,10 @@ body {
     width: 100%;
 } */
 
+h1 {
+    margin-right: auto;
+}
+
 .all-header {
     width: 100%;
     box-sizing: border-box;
@@ -64,9 +68,27 @@ body {
     /* border: #1E90FF; */
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.45);
     cursor: pointer;
-    margin-left: auto;
-    margin-right: 40px;
+    /* margin-left: auto; */
+    margin:0px 40px;
     padding: 10px 30px;
+}
+
+.logout {
+    /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.45);
+    margin-left: auto;
+    color: white;
+    border-radius: 20px; */
+
+    display: block;
+    padding: 7px 25px;
+    border-radius: 20px;
+    border: 0px 4px 10px rgba(0, 0, 0, 0.45);
+    border-bottom: 4px solid #1d7dcc;
+    background-color: #2196f3;
+    color: #fff;
+    cursor: pointer;
+    appearance: none;
+    margin-left: 5px;
 }
 
 .transition {

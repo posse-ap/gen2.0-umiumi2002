@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -26,60 +25,47 @@
             <div class="site-header">
                 <img src="{{ asset('/img/posselogo.jpg') }}" alt="POSSEロゴ">
                 <h1>4th week</h1>
+                    <p>{{ $user->name }}さん</p>
+                <form action="{{ route('logout') }}" method="post">
+                    @csrf
+                    <input type="submit" value="ログアウト" class="logout">
+                </form>
                 <button class="button" id="post">記録・投稿</button>
             </div>
         </div>
     </header>
     <main>
         <div class="all-container">
-         
+        
             <div class="leftside">
                 <div class="studies">
                     <div class="studytime">
                         <p class="date">Today</p>
-                   
-                       <?php 
-                        // $today = date("Y-m-d");
-
-                        // $stmt = $db -> prepare("SELECT study_time FROM webapps WHERE study_date = :today");
-                        // $stmt -> bindParam(":today",$today);
-                        // $stmt -> execute();
-                        // $study_time = $stmt -> fetchColumn();
-                        //stmtにobject型で入っているデータを単一にして代入する
-                        //fetch＝配列返される
-                        ?>
-                         {{-- @foreach($items as $item) --}}
-                        <p class="number">{{ $items->first()->study_time }}</p>
-                        {{-- @endforeach --}}
+                        @foreach($today_hours as $today_hour)
+                        {{-- @if($today_hour==null)
+                        <p class="number">
+                           
+                        0
+                        @else --}}
+                        <p class="number">
+                            {{ $today_hour->today_hour }}  
+                        </p>
+                        {{-- @endif --}}
+                        @endforeach
                         <p class="hour">hour</p>
                     </div>
                     <div class="studytime">
                         <p class="date">Month</p>
-                        <?php 
-                        // $month = date("Y-m");
-                        // $stmt = $db -> prepare("SELECT sum(study_time) FROM webapps WHERE study_date LIKE '2022-03%'");
-                        // $stmt -> bindParam(":month",$month);
-                        // $stmt -> execute();
-                        // $month_study_time = $stmt -> fetchColumn();
-
-
-                            // $month = "SELECT sum(study_time) FROM webapps YEAR(study_date)=DATE('Y') AND MONTH(study_date)= DATE('m')";
-                            // $month = "SELECT sum(study_time) FROM webapps WHERE DATE('Y', strtotime(study_date))=2022";
-                            // $stmt = $db -> query($month)->fetchColumn();
-                            // print_r($stmt);
-                        ?>
-                        <p class="number"></p>
+                        @foreach($month_hours as $month_hour)
+                        <p class="number">{{ $month_hour->month_hour }}</p>
+                        @endforeach
                         <p class="hour">hour</p>
                     </div>
                     <div class="studytime">
                         <p class="date">Total</p>
-                        <?php 
-                            //  $stmt = $db -> prepare("SELECT sum(study_time) FROM webapps");
-                            // //  $stmt -> bindParam(":month",$month);
-                            //  $stmt -> execute();
-                            //  $all_study_time = $stmt -> fetchColumn();
-                        ?>
-                        <p class="number"></p>
+                        @foreach($total_hours as $total_hour)
+                        <p class="number">{{ $total_hour->total_hour }}</p>
+                        @endforeach
                         <p class="hour">hour</p>
                     </div>
                 </div>
@@ -146,26 +132,37 @@
                     <p>学習コンテンツ（複数選択可）</p>
                     <div class="contact__form__item">
 
-                        <input type="checkbox" id="check-content1" name="content" value=""><label for="check-content1"></label>N予備校
-                            <!-- <span class="label__text">
+                        <input type="checkbox" id="check-content1" name="content" value=""><label
+                            for="check-content1"></label>N予備校
+                        <!-- <span class="label__text">
                                 <span class="input[name="content"]">
                                     <i class="fa fa-check icon"></i>
                                 </span>
                             </span> -->
-                        <input type="checkbox" id="check-content2" name="content" value=""><label for="check-content2"></label>ドットインストール
-                        <input type="checkbox" id="check-content3" name="content" value=""><label for="check-content3"></label>POSSE課題
+                        <input type="checkbox" id="check-content2" name="content" value=""><label
+                            for="check-content2"></label>ドットインストール
+                        <input type="checkbox" id="check-content3" name="content" value=""><label
+                            for="check-content3"></label>POSSE課題
 
                     </div>
                     <p>学習言語（複数選択可）</p>
                     <div class="contact__form__item">
-                        <input type="checkbox" id="check-language1" name="content" value=""><label for="check-language1"></label>HTML
-                        <input type="checkbox" id="check-language2" name="content" value=""><label for="check-language2"></label>CSS
-                        <input type="checkbox" id="check-language3" name="content" value=""><label for="check-language3"></label>JavaScript
-                        <input type="checkbox" id="check-language4" name="content" value=""><label for="check-language4"></label>PHP
-                        <input type="checkbox" id="check-language5" name="content" value=""><label for="check-language5"></label>Laravel
-                        <input type="checkbox" id="check-language6" name="content" value=""><label for="check-language6"></label>SQL
-                        <input type="checkbox" id="check-language7" name="content" value=""><label for="check-language7"></label>SHELL
-                        <input type="checkbox" id="check-language8" name="content" value=""><label for="check-language8"></label>情報システム基礎知識
+                        <input type="checkbox" id="check-language1" name="content" value=""><label
+                            for="check-language1"></label>HTML
+                        <input type="checkbox" id="check-language2" name="content" value=""><label
+                            for="check-language2"></label>CSS
+                        <input type="checkbox" id="check-language3" name="content" value=""><label
+                            for="check-language3"></label>JavaScript
+                        <input type="checkbox" id="check-language4" name="content" value=""><label
+                            for="check-language4"></label>PHP
+                        <input type="checkbox" id="check-language5" name="content" value=""><label
+                            for="check-language5"></label>Laravel
+                        <input type="checkbox" id="check-language6" name="content" value=""><label
+                            for="check-language6"></label>SQL
+                        <input type="checkbox" id="check-language7" name="content" value=""><label
+                            for="check-language7"></label>SHELL
+                        <input type="checkbox" id="check-language8" name="content" value=""><label
+                            for="check-language8"></label>情報システム基礎知識
                     </div>
                 </div>
                 <div class="modal-right">
@@ -176,7 +173,8 @@
                     <p>Twitter用コメント</p>
                     <textarea id="tweetBox" class="twitter-comment" name="tweet_box" cols="40" rows="8"></textarea>
                     <div class="sharebutton"><input type="checkbox" id="tweet" name="content">
-                        <label for="tweet" ></label><p>Twitterにシェアする</p>
+                        <label for="tweet"></label>
+                        <p>Twitterにシェアする</p>
                     </div>
 
                 </div>
@@ -197,22 +195,10 @@
             <span class="circle" id="circle"></span>
         </div>
     </main>
-    <?php 
-    // $year = date('Y');
-    // $month = date("Y-m");
-    // for ($i=1; $i<= 31; $i++) {
-    // $stmt = $db -> prepare("SELECT study_time FROM webapps WHERE study_date = ?");
-    // $stmt->bindValue(1, "$month-[$i]");
-    // $stmt -> execute();
-    // $barChart_[$i] = $stmt -> fetchAll();
-    // print_r('<pre>');    
-    // print_r($barChart_[$i][0][0]);
-    // print_r('</pre>');
+   
 
-    ?>
-  
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="{{ asset('/js/webapp.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="{{ asset('/js/webapp.js') }}"></script>
 
 
 

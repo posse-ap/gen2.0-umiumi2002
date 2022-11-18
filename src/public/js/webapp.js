@@ -21,24 +21,7 @@ $(document).ready(function() {
     });
 });
 
-// 使いたいカレンダー////////////
-// $(function () {
-//     //datepicker処理
-//     $('datepicker').datepicker({
-//         showButtonPanel: true, //閉じるボタンと今日ボタンを表示
-//         beforeShow: function (textbox, instance) {
-//             $('.appendDatepicker').append($('#ui-datepicker-div'));
-//         }
-//     });
-//     //カレンダーボタンをクリックしたらモーダルウィンドウを表示
-//     $('#date, .calender').on('click', function () {
-//         $('.appendDatepicker').addClass('open');
-//     });
-// });
-
 //カレンダー
-
-
 $(document).ready(function() {
     $('#postbutton').click(function() {
         $('.loading').show();
@@ -57,12 +40,6 @@ $(document).ready(function() {
 
 ////////////なんだこれ↓
 let postbutton = document.getElementById('post')
-
-
-
-
-
-
 
 //tweet画面遷移（完）完
 
@@ -99,3 +76,5 @@ post.addEventListener('click', function(event) {
 
     // circle.classList.add('hide');
 }, false);
+
+

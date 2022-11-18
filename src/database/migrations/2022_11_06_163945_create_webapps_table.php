@@ -17,9 +17,23 @@ class CreateWebappsTable extends Migration
             $table->bigIncrements('id');
             $table->date('study_date');
             $table->integer('study_time');
-            $table->string('study_language');
-            $table->string('study_content');
         });
+
+        Schema::create('languages', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->integer('webapp_id');
+            $table->integer('study_time');
+            $table->string('language_name');
+        });
+
+        Schema::create('contents', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->integer('webapp_id');
+            $table->integer('study_time');
+            $table->string('content_name');
+        });
+
+
     }
 
     /**
@@ -30,5 +44,7 @@ class CreateWebappsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('webapps');
+        Schema::dropIfExists('languages');
+        Schema::dropIfExists('contents');
     }
 }
