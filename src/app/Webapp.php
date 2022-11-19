@@ -8,6 +8,8 @@ use Carbon\Carbon;
 
 class Webapp extends Model
 {
+    
+
     public function languages()
     {
         return $this->hasMany('App\Language');
@@ -52,5 +54,19 @@ class Webapp extends Model
         return DB::table('webapps')
             ->selectRaw('SUM(study_time) AS total_hour')
             ->get();
+    }
+    
+    public function getStudyHour()
+    {
+        // 今月の初めの時間を取得
+        $now = Carbon::now()->startOfMonth();
+        // 日付けあふれなしで翌月から1秒引いた時間を取得
+        $next = Carbon::now()->startOfMonth()->addMonthNoOverflow()->subSecond(1);
+        return DB::table('webapps')
+        ->whereBetween('study_date', array($now, $next))
+        ->selectRaw('DATE_FORMAT(study_date,"%d") AS date')
+        ->selectRaw('SUM(study_time) AS study_hour')
+        ->groupBy('date')
+        ->get();
     }
 }

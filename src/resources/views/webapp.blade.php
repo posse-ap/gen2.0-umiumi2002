@@ -42,15 +42,15 @@
                     <div class="studytime">
                         <p class="date">Today</p>
                         @foreach ($today_hours as $today_hour)
-                            {{-- @if ($today_hour == null)
-                        <p class="number">
-                           
-                        0
-                        @else --}}
-                            <p class="number">
-                                {{ $today_hour->today_hour }}
-                            </p>
-                            {{-- @endif --}}
+                            @if ($today_hour->today_hour == null)
+                                <p class="number">
+                                    0
+                                </p>
+                            @else
+                                <p class="number">
+                                    {{ $today_hour->today_hour }}
+                                </p>
+                            @endif
                         @endforeach
                         <p class="hour">hour</p>
                     </div>
@@ -70,21 +70,62 @@
                     </div>
                 </div>
                 <div class="graph" id="chart_div"></div>
-                <script>
+                {{-- @foreach ($study_hours as $study_hour) --}}
+                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>  
+                <script type="text/javascript">
+                    const js_array = @json($result);
                     //棒グラフ
                     google.charts.load('current', {
                         packages: ['corechart', 'bar']
                     });
                     google.charts.setOnLoadCallback(drawBasic);
 
-                    function drawBasic() {
-                        var data = new google.visualization.DataTable();
-                        data.addColumn('number', 'Day');
-                        data.addColumn('number', 'Study Time');
+                    // let array = [
+                    //     ['date', {
+                    //         label: 'hour',
+                    //         type: 'number'
+                    //     }],
+                    //     [1, 0],
+                    //     [2, 0],
+                    //     [3, 0],
+                    //     [4, 0],
+                    //     [5, 0],
+                    //     [6, 0],
+                    //     [7, 0],
+                    //     [8, 0],
+                    //     [9, 0],
+                    //     [10, 0],
+                    //     [11, 0],
+                    //     [12, 0],
+                    //     [13, 0],
+                    //     [14, 0],
+                    //     [15, 0],
+                    //     [16, 0],
+                    //     [17, 0],
+                    //     [18, 0],
+                    //     [19, 0],
+                    //     [20, 0],
+                    //     [21, 0],
+                    //     [22, 0],
+                    //     [23, 0],
+                    //     [24, 0],
+                    //     [25, 0],
+                    //     [26, 0],
+                    //     [27, 0],
+                    //     [28, 0],
+                    //     [29, 0],
+                    //     [30, 0],
+                    //     [31, 0]
+                    // ];
 
-                        data.addRows([
-                           ///////
-                        ])
+                    // for (let i = 1; i < js_array.length + 1; i++) {
+                    //     if (js_array[i - 1]) {
+                    //         array[Number(js_array[i - 1].date)][1] = Number(js_array[i - 1].hour);
+                    //     }
+                    // };
+
+                    function drawBasic() {
+                        var data = google.visualization.arrayToDataTable(js_array);
                         var options = {
                             chartArea: {
                                 left: 30,
@@ -122,6 +163,7 @@
                         chart.draw(data, options);
                     }
                 </script>
+                {{-- @endforeach --}}
             </div>
             <div class="rightside">
                 <div class="language">
@@ -250,7 +292,7 @@
 
 
 
-    
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="{{ asset('/js/webapp.js') }}"></script>

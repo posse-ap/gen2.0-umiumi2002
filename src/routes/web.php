@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\MailSendController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,3 +22,8 @@ Route::get('/webapp', 'WebappController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/mail', 'MailSendController@index');
+
+
