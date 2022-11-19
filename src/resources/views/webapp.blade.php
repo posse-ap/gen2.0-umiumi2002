@@ -10,10 +10,8 @@
     <link rel="stylesheet" href="{{ asset('/css/webapp.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <title>WEBAPP</title>
-    <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.0.min.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.j/s"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript"></script>
@@ -70,62 +68,16 @@
                     </div>
                 </div>
                 <div class="graph" id="chart_div"></div>
-                {{-- @foreach ($study_hours as $study_hour) --}}
+                {{-- 棒グラフ --}}
                 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>  
                 <script type="text/javascript">
-                    const js_array = @json($result);
-                    //棒グラフ
+                    const study_result = @json($study_result);
                     google.charts.load('current', {
                         packages: ['corechart', 'bar']
                     });
                     google.charts.setOnLoadCallback(drawBasic);
-
-                    // let array = [
-                    //     ['date', {
-                    //         label: 'hour',
-                    //         type: 'number'
-                    //     }],
-                    //     [1, 0],
-                    //     [2, 0],
-                    //     [3, 0],
-                    //     [4, 0],
-                    //     [5, 0],
-                    //     [6, 0],
-                    //     [7, 0],
-                    //     [8, 0],
-                    //     [9, 0],
-                    //     [10, 0],
-                    //     [11, 0],
-                    //     [12, 0],
-                    //     [13, 0],
-                    //     [14, 0],
-                    //     [15, 0],
-                    //     [16, 0],
-                    //     [17, 0],
-                    //     [18, 0],
-                    //     [19, 0],
-                    //     [20, 0],
-                    //     [21, 0],
-                    //     [22, 0],
-                    //     [23, 0],
-                    //     [24, 0],
-                    //     [25, 0],
-                    //     [26, 0],
-                    //     [27, 0],
-                    //     [28, 0],
-                    //     [29, 0],
-                    //     [30, 0],
-                    //     [31, 0]
-                    // ];
-
-                    // for (let i = 1; i < js_array.length + 1; i++) {
-                    //     if (js_array[i - 1]) {
-                    //         array[Number(js_array[i - 1].date)][1] = Number(js_array[i - 1].hour);
-                    //     }
-                    // };
-
                     function drawBasic() {
-                        var data = google.visualization.arrayToDataTable(js_array);
+                        var data = google.visualization.arrayToDataTable(study_result);
                         var options = {
                             chartArea: {
                                 left: 30,
@@ -163,41 +115,80 @@
                         chart.draw(data, options);
                     }
                 </script>
-                {{-- @endforeach --}}
             </div>
             <div class="rightside">
                 <div class="language">
                     <p class="number blank">学習言語</p>
                     <div id="donutchart-language"></div>
+                    {{-- 円グラフ --}}
+                    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                    <script type="text/javascript">
+                        const language_result = @json($language_result);
+
+                        google.charts.load("current", { packages: ["corechart"] });
+                        google.charts.setOnLoadCallback(drawChartLanguage);
+
+                        function drawChartLanguage() {
+                            var data = google.visualization.arrayToDataTable(language_result);
+                        
+                            var options = {
+                                chartArea: { width: '100%', height: '100%' },
+                                title: 'My Daily Activities',
+                                pieHole: 0.5,
+                                legend: { position: 'none' },
+                                slices: {
+                                    0: { color: '#0A45EC' },
+                                    1: { color: '#0F71BD' },
+                                    2: { color: '#20BDDE' },
+                                },
+                                pieSliceBorderColor: 'none',
+                                responsive: true,
+                            };                        
+                            var chart = new google.visualization.PieChart(document.getElementById('donutchart-language'));
+                            chart.draw(data, options);}
+                    </script>
+                     
+                     
                     <div class="legend">
-                        <p class="item1">●</p>
-                        <legend>HTML</legend>
-                        <p class="item2">●</p>
-                        <legend>CSS</legend>
-                        <p class="item3">●</p>
-                        <legend>JavaScript</legend>
-                        <p class="item4">●</p>
-                        <legend>PHP</legend>
-                        <p class="item5">●</p>
-                        <legend>Laravel</legend>
-                        <p class="item6">●</p>
-                        <legend>SQL</legend>
-                        <p class="item7">●</p>
-                        <legend>SHELL</legend>
-                        <p class="item8">●</p>
-                        <legend>情報システム基礎知識<br>(その他)</legend>
+                        @foreach($language_hours as $value)
+                        <p class="item{{ $loop->iteration }}">●</p>
+                        <legend>{{ $value->language_name }}</legend>
+                        @endforeach
                     </div>
                 </div>
                 <div class="contents">
                     <p class="number blank">学習コンテンツ</p>
                     <div id="donutchart-content"></div>
-                    <div class="legend">
-                        <p class="item1">●</p>
-                        <legend>ドットインストール</legend>
-                        <p class="item2">●</p>
-                        <legend>N予備校</legend>
-                        <p class="item3">●</p>
-                        <legend>POSSE課題</legend>
+                    <script>
+                    const content_result = @json($content_result)    
+                    google.charts.load("current", { packages: ["corechart"] });
+                    google.charts.setOnLoadCallback(drawChartContent);
+                    function drawChartContent() {
+                        var data = google.visualization.arrayToDataTable(content_result);
+                        var options = {
+                            chartArea: { width: '100%', height: '100%' },
+                            // title: 'My Daily Activities',
+                            pieHole: 0.5,
+                            legend: { position: 'bottom' },
+                            slices: {
+                                0: { color: '#0A45EC' },
+                                1: { color: '#0F71BD' },
+                                2: { color: '#20BDDE' },
+                            },
+                            pieSliceBorderColor: 'none',
+                            responsive: true,
+                        
+                        };
+                    
+                        var chart = new google.visualization.PieChart(document.getElementById('donutchart-content'));
+                        chart.draw(data, options);
+                    }
+                    </script>
+                       <div class="legend">
+                        @foreach($content_hours as $value)
+                        <p class="item{{ $loop->iteration }}">●</p>
+                        <legend>{{ $value->content_name }}</legend>
+                        @endforeach
                     </div>
                 </div>
             </div>

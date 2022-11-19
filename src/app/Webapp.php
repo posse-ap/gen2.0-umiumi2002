@@ -69,4 +69,25 @@ class Webapp extends Model
         ->groupBy('date')
         ->get();
     }
+
+
+    public function getLanguageHour() 
+    {
+        //全月分←今月に絞り込むカラムない
+        return DB::table('languages')
+        ->selectRaw('language_name AS language_name')
+        ->selectRaw('SUM(study_time) AS study_hour')
+        ->groupBy('language_name')
+        ->get();
+    }
+
+    public function getContentHour() 
+    {
+        return DB::table('contents')
+        ->selectRaw('content_name AS content_name')
+        ->selectRaw('SUM(study_time) AS study_hour')
+        ->groupBy('content_name')
+        ->get();
+    }
+
 }
