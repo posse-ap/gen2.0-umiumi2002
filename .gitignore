@@ -3,3 +3,4 @@
 .history
 infra/docker/mysql/data
 src1
+node_modules/
