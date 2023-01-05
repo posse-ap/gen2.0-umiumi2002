@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <title>Gamedev Canvas Workshop</title>
+  <style>
+    * { padding: 0; margin: 0; }
+    canvas { background: #eee; display: block; margin: 0 auto; }
+  </style>
+</head>
+<body>
+
+<canvas id="myCanvas" width="480" height="320"></canvas>
+
+<script>
+  class Vec2 {
+    constructor(_x,_y) {
+      this.x = _x;
+      this.y = _y;
+    }
+  }
+
+  // 位置ベクトル
+  let ballP =new Vec2(200,200);
+
+  // 速度ベクトル
+  let ballV = new Vec2(240,-60);
+
+function draw () {
+  ballP.x = ballP.x + ballV.x/60;
+  ballP.y = ballP.y + ballV.y/60;
+
+  if( (ballP.x<15) && (ballP.x >385)) {
+    ballV.x= -ballV.x;
+  }
+
+  if ()
+}  
+
+
+
+</script>
+
+</body>
+</html>
