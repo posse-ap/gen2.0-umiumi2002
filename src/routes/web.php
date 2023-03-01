@@ -19,6 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('/webapp', 'WebappController@index');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -26,4 +27,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/mail', 'MailSendController@index');
 
+Route::middleware(['auth'])->group(function () {
+
+Route::resource('/webapp', 'TestController');
+
+});
+// get処理
 

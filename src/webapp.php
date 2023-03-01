@@ -135,7 +135,7 @@
                 <div class="modal-left">
                     <p>学習日</p>
                     <div class="calendar">
-                        <!-- <input type="text" name="datepicker" class="datepicker" value=""> -->
+                        <!-- <input type="text" name="study-time" class="study-time" value=""> -->
                         <input id="date" type="date" name="date">
                         <div class="calendar__modal">
                         </div>
@@ -168,7 +168,7 @@
                 <div class="modal-right">
                     <p>学習時間</p>
                     <div>
-                        <input type="text" name="datepicker" class="study-time" value="">
+                        <input type="text" name="study-time" class="study-time" value="">
                     </div>
                     <p>Twitter用コメント</p>
                     <textarea id="tweetBox" class="twitter-comment" name="tweet_box" cols="40" rows="8"></textarea>

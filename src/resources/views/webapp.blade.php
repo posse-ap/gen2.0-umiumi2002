@@ -69,13 +69,14 @@
                 </div>
                 <div class="graph" id="chart_div"></div>
                 {{-- 棒グラフ --}}
-                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>  
+                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                 <script type="text/javascript">
                     const study_result = @json($study_result);
                     google.charts.load('current', {
                         packages: ['corechart', 'bar']
                     });
                     google.charts.setOnLoadCallback(drawBasic);
+
                     function drawBasic() {
                         var data = google.visualization.arrayToDataTable(study_result);
                         var options = {
@@ -125,69 +126,97 @@
                     <script type="text/javascript">
                         const language_result = @json($language_result);
 
-                        google.charts.load("current", { packages: ["corechart"] });
+                        google.charts.load("current", {
+                            packages: ["corechart"]
+                        });
                         google.charts.setOnLoadCallback(drawChartLanguage);
 
                         function drawChartLanguage() {
                             var data = google.visualization.arrayToDataTable(language_result);
-                        
+
                             var options = {
-                                chartArea: { width: '100%', height: '100%' },
+                                chartArea: {
+                                    width: '100%',
+                                    height: '100%'
+                                },
                                 title: 'My Daily Activities',
                                 pieHole: 0.5,
-                                legend: { position: 'none' },
+                                legend: {
+                                    position: 'none'
+                                },
                                 slices: {
-                                    0: { color: '#0A45EC' },
-                                    1: { color: '#0F71BD' },
-                                    2: { color: '#20BDDE' },
+                                    0: {
+                                        color: '#0A45EC'
+                                    },
+                                    1: {
+                                        color: '#0F71BD'
+                                    },
+                                    2: {
+                                        color: '#20BDDE'
+                                    },
                                 },
                                 pieSliceBorderColor: 'none',
                                 responsive: true,
-                            };                        
+                            };
                             var chart = new google.visualization.PieChart(document.getElementById('donutchart-language'));
-                            chart.draw(data, options);}
+                            chart.draw(data, options);
+                        }
                     </script>
-                     
-                     
+
+
                     <div class="legend">
-                        @foreach($language_hours as $value)
-                        <p class="item{{ $loop->iteration }}">●</p>
-                        <legend>{{ $value->language_name }}</legend>
+                        @foreach ($language_hours as $value)
+                            <p class="item{{ $loop->iteration }}">●</p>
+                            <legend>{{ $value->language_name }}</legend>
                         @endforeach
                     </div>
                 </div>
                 <div class="contents">
                     <p class="number blank">学習コンテンツ</p>
                     <div id="donutchart-content"></div>
+                    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                     <script>
-                    const content_result = @json($content_result)    
-                    google.charts.load("current", { packages: ["corechart"] });
-                    google.charts.setOnLoadCallback(drawChartContent);
-                    function drawChartContent() {
-                        var data = google.visualization.arrayToDataTable(content_result);
-                        var options = {
-                            chartArea: { width: '100%', height: '100%' },
-                            // title: 'My Daily Activities',
-                            pieHole: 0.5,
-                            legend: { position: 'bottom' },
-                            slices: {
-                                0: { color: '#0A45EC' },
-                                1: { color: '#0F71BD' },
-                                2: { color: '#20BDDE' },
-                            },
-                            pieSliceBorderColor: 'none',
-                            responsive: true,
-                        
-                        };
-                    
-                        var chart = new google.visualization.PieChart(document.getElementById('donutchart-content'));
-                        chart.draw(data, options);
-                    }
+                        const content_result = @json($content_result);
+                        google.charts.load("current", {
+                            packages: ["corechart"]
+                        });
+                        google.charts.setOnLoadCallback(drawChartContent);
+
+                        function drawChartContent() {
+                            var data = google.visualization.arrayToDataTable(content_result);
+                            var options = {
+                                chartArea: {
+                                    width: '100%',
+                                    height: '100%'
+                                },
+                                pieHole: 0.5,
+                                legend: {
+                                    position: 'bottom'
+                                },
+                                slices: {
+                                    0: {
+                                        color: '#0A45EC'
+                                    },
+                                    1: {
+                                        color: '#0F71BD'
+                                    },
+                                    2: {
+                                        color: '#20BDDE'
+                                    },
+                                },
+                                pieSliceBorderColor: 'none',
+                                responsive: true,
+
+                            };
+
+                            var chart = new google.visualization.PieChart(document.getElementById('donutchart-content'));
+                            chart.draw(data, options);
+                        }
                     </script>
-                       <div class="legend">
-                        @foreach($content_hours as $value)
-                        <p class="item{{ $loop->iteration }}">●</p>
-                        <legend>{{ $value->content_name }}</legend>
+                    <div class="legend">
+                        @foreach ($content_hours as $value)
+                            <p class="item{{ $loop->iteration }}">●</p>
+                            <legend>{{ $value->content_name }}</legend>
                         @endforeach
                     </div>
                 </div>
@@ -202,71 +231,67 @@
         <div>
             <button class="responsiveButton" id="responsivePost">記録・投稿</button>
         </div>
-        <div class="modal">
-            <span class="close-btn"></span>
-            <div class="modal-contents">
-                <div class="modal-left">
-                    <p>学習日</p>
-                    <div class="calendar">
-                        <!-- <input type="text" name="datepicker" class="datepicker" value=""> -->
-                        <input id="date" type="date" name="date">
-                        <div class="calendar__modal">
+        {{-- --------------- modal-------------}}
+        <form action="/webapp" method="post">
+            @csrf
+            <div class="modal">
+                <span class="close-btn"></span>
+                <div class="modal-contents">
+                    <div class="modal-left">
+                        @csrf
+                        <p>学習日</p>
+                        <div class="calendar">
+                            <input id="date" type="date" name="date">
+                            <div class="calendar__modal">
+                            </div>
+                        </div>
+                        <p>学習コンテンツ（複数選択可）</p>
+                        <div class="contact__form__item">
+                            <input type="checkbox" id="check-content1" name="content" value=""><label
+                                for="check-content1"></label>N予備校
+                            <input type="checkbox" id="check-content2" name="content" value=""><label
+                                for="check-content2"></label>ドットインストール
+                            <input type="checkbox" id="check-content3" name="content" value=""><label
+                                for="check-content3"></label>POSSE課題
+                        </div>
+                        <p>学習言語（複数選択可）</p>
+                        <div class="contact__form__item">
+                            <input type="checkbox" id="check-language1" name="language" value=""><label
+                                for="check-language1"></label>HTML
+                            <input type="checkbox" id="check-language2" name="language" value=""><label
+                                for="check-language2"></label>CSS
+                            <input type="checkbox" id="check-language3" name="language" value=""><label
+                                for="check-language3"></label>JavaScript
+                            <input type="checkbox" id="check-language4" name="language" value=""><label
+                                for="check-language4"></label>PHP
+                            <input type="checkbox" id="check-language5" name="language" value=""><label
+                                for="check-language5"></label>Laravel
+                            <input type="checkbox" id="check-language6" name="language" value=""><label
+                                for="check-language6"></label>SQL
+                            <input type="checkbox" id="check-language7" name="language" value=""><label
+                                for="check-language7"></label>SHELL
+                            <input type="checkbox" id="check-language8" name="language" value=""><label
+                                for="check-language8"></label>情報システム基礎知識
                         </div>
                     </div>
-                    <p>学習コンテンツ（複数選択可）</p>
-                    <div class="contact__form__item">
-
-                        <input type="checkbox" id="check-content1" name="content" value=""><label
-                            for="check-content1"></label>N予備校
-                        <!-- <span class="label__text">
-                                <span class="input[name="content"]">
-                                    <i class="fa fa-check icon"></i>
-                                </span>
-                            </span> -->
-                        <input type="checkbox" id="check-content2" name="content" value=""><label
-                            for="check-content2"></label>ドットインストール
-                        <input type="checkbox" id="check-content3" name="content" value=""><label
-                            for="check-content3"></label>POSSE課題
-
-                    </div>
-                    <p>学習言語（複数選択可）</p>
-                    <div class="contact__form__item">
-                        <input type="checkbox" id="check-language1" name="content" value=""><label
-                            for="check-language1"></label>HTML
-                        <input type="checkbox" id="check-language2" name="content" value=""><label
-                            for="check-language2"></label>CSS
-                        <input type="checkbox" id="check-language3" name="content" value=""><label
-                            for="check-language3"></label>JavaScript
-                        <input type="checkbox" id="check-language4" name="content" value=""><label
-                            for="check-language4"></label>PHP
-                        <input type="checkbox" id="check-language5" name="content" value=""><label
-                            for="check-language5"></label>Laravel
-                        <input type="checkbox" id="check-language6" name="content" value=""><label
-                            for="check-language6"></label>SQL
-                        <input type="checkbox" id="check-language7" name="content" value=""><label
-                            for="check-language7"></label>SHELL
-                        <input type="checkbox" id="check-language8" name="content" value=""><label
-                            for="check-language8"></label>情報システム基礎知識
+                    <div class="modal-right">
+                        <p>学習時間</p>
+                        <div>
+                            <input type="text" name="study-time" class="study-time" value="">
+                        </div>
+                        <p>Twitter用コメント</p>
+                        <textarea id="tweetBox" class="twitter-comment" name="tweet_box" cols="40" rows="8"></textarea>
+                        <div class="sharebutton"><input type="checkbox" id="tweet" name="content">
+                            <label for="tweet"></label>
+                            <p>Twitterにシェアする</p>
+                        </div>
                     </div>
                 </div>
-                <div class="modal-right">
-                    <p>学習時間</p>
-                    <div>
-                        <input type="text" name="datepicker" class="study-time" value="">
-                    </div>
-                    <p>Twitter用コメント</p>
-                    <textarea id="tweetBox" class="twitter-comment" name="tweet_box" cols="40" rows="8"></textarea>
-                    <div class="sharebutton"><input type="checkbox" id="tweet" name="content">
-                        <label for="tweet"></label>
-                        <p>Twitterにシェアする</p>
-                    </div>
-
-                </div>
+                <span class="postbutton">
+                    <input class="button" id="TWEET" href="http://twitter.com/share?text=" target="_blank" value="記録・投稿">
+                </span>
             </div>
-            <span class="postbutton">
-                <a class="button" id="TWEET" href="http://twitter.com/share?text=" target="_blank">記録・投稿</a>
-            </span>
-        </div>
+        </form>
         <div class="loading" id="loading">
             <span class="close-btn"></span>
             <div class="a">

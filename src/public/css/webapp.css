@@ -331,7 +331,7 @@ legend {
     font-weight: bold;
 }
 
-.datepicker {
+.study-time {
     width: 100%;
     background: rgba(0, 0, 0, 0.08);
     border: 1px;
@@ -460,6 +460,91 @@ input[name="content"]:checked+label::before {
 }
 
 input[name="content"]:checked+label::after {
+
+    /*チェックの✓をつくる*/
+
+    content: "";
+
+    display: block;
+
+    width: 10px;
+
+    height: 7px;
+
+    box-sizing: border-box;
+
+    border-bottom: 2px solid #fff;
+
+    border-left: 2px solid #fff;
+
+    position: absolute;
+
+    /*ここから下は位置を調整する*/
+
+    top: 45%;
+
+    left: 25%;
+
+    /*箱を斜めに傾けてチェック表示にする*/
+
+    -webkit-transform: rotate(-45deg);
+
+    transform: rotate(-45deg) translateY(-50%);
+
+}
+
+input[name="language"]+label {
+
+    position: relative;
+
+    padding-left: 20px;
+
+    /*チェックボックス分の隙間を作る*/
+
+}
+
+input[name="language"]+label::before {
+
+    content: "";
+
+    display: block;
+
+    width: 15px;
+
+    height: 15px;
+
+    position: absolute;
+
+    top: 50%;
+
+    left: 0;
+
+    transform: translateY(-50%);
+
+    /*中央ぞろえにする*/
+
+    border: 3px solid #a9a9a9;
+
+    /*お好きなや太さで。*/
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    /*ポインターを表示する*/
+
+}
+
+input[name="language"]:checked+label::before {
+
+    /*チェックしたときの箱の色を変える*/
+
+    background: cornflowerblue;
+    border: 3px solid cornflowerblue;
+
+}
+
+input[name="language"]:checked+label::after {
 
     /*チェックの✓をつくる*/
 
