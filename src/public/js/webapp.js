@@ -66,16 +66,16 @@ function twitter() {
 }
 
 
-post.addEventListener('click', function(event) {
-    event.preventDefault();
-    // document.getElementById('circle').style.display='block'
-    circle.style.display = 'block';
-    setTimeout(disappear, 3000);
-    setTimeout(complete, 3000);
-    setTimeout(twitter, 3000);
+// post.addEventListener('click', function(event) {
+//     event.preventDefault();
+//     // document.getElementById('circle').style.display='block'
+//     circle.style.display = 'block';
+//     setTimeout(disappear, 3000);
+//     setTimeout(complete, 3000);
+//     setTimeout(twitter, 3000);
 
-    // circle.classList.add('hide');
-}, false);
+//     // circle.classList.add('hide');
+// }, false);
 
 
 //円グラフ

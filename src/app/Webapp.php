@@ -8,6 +8,8 @@ use Carbon\Carbon;
 
 class Webapp extends Model
 {
+    protected $fillable = ['study_date','study_time'];
+    public $timestamps = false;
     
 
     public function languages()

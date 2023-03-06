@@ -1,14 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
+use App\Webapp;
+use App\Language;
 
 class TestController extends Controller
 {
-
-
-
+    public function __construct(){
+        $this->middleware('auth');
+      }
 
     /**
      * Display a listing of the resource.
@@ -20,6 +24,7 @@ class TestController extends Controller
     {
         $user = Auth::user();
         $this->webapps = new Webapp();   
+        // オブジェクト   
         $today_hours = $this->webapps->getTodayHour();
         $month_hours = $this->webapps->getMonthHour();
         $total_hours = $this->webapps->getTotalHour();
@@ -68,7 +73,15 @@ class TestController extends Controller
      */
     public function store(Request $request)
     {
-        dd(hello);
+        $inputs = $request->all();
+        // $webapp = new Webapp;
+        // $webapp -> study_date = $request -> date;
+        // $webapp -> study_time = $request -> study_time;
+        Webapp::create($inputs);
+        
+        return redirect('/webapp');
+       
+        // dd($request->study_time);
     }
 
     /**

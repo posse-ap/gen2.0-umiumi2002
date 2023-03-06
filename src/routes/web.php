@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/webapp', 'WebappController@index');
+// Route::get('/webapp', 'WebappController@index');
 
 Auth::routes();
 
@@ -27,10 +27,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/mail', 'MailSendController@index');
 
-Route::middleware(['auth'])->group(function () {
+Route::resource('webapp', 'TestController');
 
-Route::resource('/webapp', 'TestController');
-
-});
-// get処理
 
