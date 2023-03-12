@@ -26,6 +26,7 @@ class TestController extends Controller
         $this->webapps = new Webapp();   
         // オブジェクト   
         $today_hours = $this->webapps->getTodayHour();
+        // dd($today_hours);
         $month_hours = $this->webapps->getMonthHour();
         $total_hours = $this->webapps->getTotalHour();
         $study_hours =$this->webapps->getStudyHour();
@@ -74,8 +75,9 @@ class TestController extends Controller
     public function store(Request $request)
     {
         $inputs = $request->all();
+        // dd($inputs);
         // $webapp = new Webapp;
-        // $webapp -> study_date = $request -> date;
+        // $webapp -> study_date = $request -> study_date;
         // $webapp -> study_time = $request -> study_time;
         Webapp::create($inputs);
         

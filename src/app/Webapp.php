@@ -14,12 +14,12 @@ class Webapp extends Model
 
     public function languages()
     {
-        return $this->hasMany('App\Language');
+        return $this->belongsToMany('App\Language');
     }
 
     public function contents()
     {
-        return $this->hasMany('App\Content');
+        return $this->belongsToMany('App\Content');
     }
 
     public function getTodayHour()
@@ -76,19 +76,25 @@ class Webapp extends Model
     public function getLanguageHour() 
     {
         //全月分←今月に絞り込むカラムない
-        return DB::table('languages')
+        return DB::table('language_webapp')
+        ->join('languages', function($join) {
+            $join->on('language_webapp.language_id', 'languages.id');
+          })
         ->selectRaw('language_name AS language_name')
-        ->selectRaw('SUM(study_time) AS study_hour')
-        ->groupBy('language_name')
+        ->selectRaw('SUM(divided_time) AS study_hour')
+        ->groupBy('language_id')
         ->get();
     }
 
     public function getContentHour() 
     {
-        return DB::table('contents')
+        return DB::table('content_webapp')
+        ->join('contents', function($join) {
+            $join->on('content_webapp.content_id', 'contents.id');
+          })
         ->selectRaw('content_name AS content_name')
-        ->selectRaw('SUM(study_time) AS study_hour')
-        ->groupBy('content_name')
+        ->selectRaw('SUM(divided_time) AS study_hour')
+        ->groupBy('content_id')
         ->get();
     }
 

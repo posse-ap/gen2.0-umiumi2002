@@ -257,21 +257,21 @@
                         <p>学習言語（複数選択可）</p>
                         <!-- //foreachで回す -->
                         <div class="contact__form__item">
-                            <input type="checkbox" id="check-language1" name="language" value="HTML"><label
+                            <input type="checkbox" id="check-language1" name="language[]" value="HTML"><label
                                 for="check-language1"></label>HTML
-                            <input type="checkbox" id="check-language2" name="language" value="CSS"><label
+                            <input type="checkbox" id="check-language2" name="language[]" value="CSS"><label
                                 for="check-language2"></label>CSS
-                            <input type="checkbox" id="check-language3" name="language" value="JavaScript"><label
+                            <input type="checkbox" id="check-language3" name="language[]" value="JavaScript"><label
                                 for="check-language3"></label>JavaScript
-                            <input type="checkbox" id="check-language4" name="language" value="PHP"><label
+                            <input type="checkbox" id="check-language4" name="language[]" value="PHP"><label
                                 for="check-language4"></label>PHP
-                            <input type="checkbox" id="check-language5" name="language" value="Laravel"><label
+                            <input type="checkbox" id="check-language5" name="language[]" value="Laravel"><label
                                 for="check-language5"></label>Laravel
-                            <input type="checkbox" id="check-language6" name="language" value="SQL"><label
+                            <input type="checkbox" id="check-language6" name="language[]" value="SQL"><label
                                 for="check-language6"></label>SQL
-                            <input type="checkbox" id="check-language7" name="language" value="SHELL"><label
+                            <input type="checkbox" id="check-language7" name="language[]" value="SHELL"><label
                                 for="check-language7"></label>SHELL
-                            <input type="checkbox" id="check-language8" name="language" value="情報システム基礎知識"><label
+                            <input type="checkbox" id="check-language8" name="language[]" value="情報システム基礎知識"><label
                                 for="check-language8"></label>情報システム基礎知識
                         </div>
                     </div>
