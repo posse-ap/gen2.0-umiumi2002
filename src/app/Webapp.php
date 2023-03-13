@@ -66,9 +66,9 @@ class Webapp extends Model
         $next = Carbon::now()->startOfMonth()->addMonthNoOverflow()->subSecond(1);
         return DB::table('webapps')
         ->whereBetween('study_date', array($now, $next))
-        ->selectRaw('DATE_FORMAT(study_date,"%d") AS date')
+        ->selectRaw('DATE_FORMAT(study_date,"%d") AS study_date')
         ->selectRaw('SUM(study_time) AS study_hour')
-        ->groupBy('date')
+        ->groupBy('study_date')
         ->get();
     }
 

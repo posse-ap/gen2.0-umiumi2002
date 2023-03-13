@@ -35,9 +35,9 @@ class TestController extends Controller
             $study_result[]=[$i,0];  
         }
         foreach($study_hours as $key => $value) {
-            $study_result[$value->date][1]=(int)$value->study_hour;
+            $study_result[(int)$value->study_date][1]=(int)$value->study_hour;
         }
-        
+
         //円グラフ
         $language_hours =$this->webapps->getLanguageHour();
         $language_result[]=['language_name','hours'];
