@@ -15,6 +15,7 @@ class CreateWebappsTable extends Migration
     {
         Schema::create('webapps', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('user_id');
             $table->date('study_date');
             $table->integer('study_time');
         });

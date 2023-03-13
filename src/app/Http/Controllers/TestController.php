@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Content;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -75,12 +77,28 @@ class TestController extends Controller
     public function store(Request $request)
     {
         $inputs = $request->all();
-        // dd($inputs);
-        // $webapp = new Webapp;
-        // $webapp -> study_date = $request -> study_date;
+        $webapp = new Webapp;
+        // $language_ids = Language::where('language_name',$request->language)->get('id');
+        // dd($request->get('content'));
+        // $get_content_id = Content::where('content_name',$request->get('content'));
+        // dd($get_content_id);
+        // $webapp -> language_webapp ->id = $request -> language_name ->with('languages')->language_name;
+        // $webapp -> language_id = $request -> language;
         // $webapp -> study_time = $request -> study_time;
-        Webapp::create($inputs);
+        // Webapp::create([
+        //     $inputs,
+        //     'user_id' => Auth::id()]);
+        Webapp::create([
+            'user_id' => Auth::id(),
+            'study_date' => $request->study_date,
+            'study_time' => $request->study_time,
+        ]);
+        // Webapp::with('languages')->sync($request->webapp_id, ['language_id' => $request->get('langage')]);
         
+       $contents_name = $request->get('content[]');
+    //    dd($contents_name);
+    //    $comment = $request->input('comment');
+
         return redirect('/webapp');
        
         // dd($request->study_time);

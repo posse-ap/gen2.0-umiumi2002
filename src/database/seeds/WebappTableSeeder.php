@@ -13,50 +13,62 @@ class WebappTableSeeder extends Seeder
     {
         $params = [
             [
+                'user_id' => 1,
                 'study_date' => '2022-10-07',
                 'study_time' => 2,
             ],
             [
+                'user_id' => 1,
                 'study_date' => '2022-11-09',
                 'study_time' => 2,
             ],
             [
+                'user_id' => 2,
                 'study_date' => '2022-11-09',
                 'study_time' => 2,
             ],
             [
+                'user_id' => 1,
                 'study_date' => '2022-11-09',
                 'study_time' => 2,
             ],
             [
+                'user_id' => 1,
                 'study_date' => '2022-11-09',
                 'study_time' => 2,
             ],
             [
+                'user_id' => 1,
                 'study_date' => '2022-11-15',
                 'study_time' => 2,
             ],
             [
+                'user_id' => 1,
                 'study_date' => '2022-11-16',
                 'study_time' => 2,
             ],
             [
+                'user_id' => 1,
                 'study_date' => '2022-11-20',
                 'study_time' => 2,
             ],
             [
+                'user_id' => 1,
                 'study_date' => '2022-11-27',
                 'study_time' => 2,
             ],
             [
+                'user_id' => 1,
                 'study_date' => '2022-11-30',
                 'study_time' => 2,
             ],
             [
+                'user_id' => 1,
                 'study_date' => '2022-11-18',
                 'study_time' => 2,
             ],
             [
+                'user_id' => 1,
                 'study_date' => '2022-11-16',
                 'study_time' => 2,
             ]
@@ -188,5 +200,26 @@ class WebappTableSeeder extends Seeder
             ],  
         ];
         DB::table('content_webapp')->insert($params);
+        $params = [
+            [
+                "name"         => '管理者',
+                "email"        => 'admin@gmail.com',
+                "password"     => Hash::make('password'),
+                "role"      => 'admin',
+            ],
+            [
+                "name"         => 'miu',
+                "email"        => 'miu@gmail.com',
+                "password"     => Hash::make('miu'),
+                "role"      => 'member',
+            ],
+            [
+                "name"         => 'furuyamiu',
+                "email"        => 'furuyamiu@gmail.com',
+                "password"     => Hash::make('furuyamiu'),
+                "role"      => 'member',
+            ],
+        ];
+        DB::table('users')->insert($params);
     }
 }

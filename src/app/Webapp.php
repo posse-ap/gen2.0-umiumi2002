@@ -8,7 +8,7 @@ use Carbon\Carbon;
 
 class Webapp extends Model
 {
-    protected $fillable = ['study_date','study_time'];
+    protected $fillable = ['user_id','study_date','study_time'];
     public $timestamps = false;
     
 
@@ -28,6 +28,7 @@ class Webapp extends Model
        $today=Carbon::today();
 
         return DB::table('webapps')
+            ->where('user_id', \Auth::user()->id)
             ->selectRaw('DATE_FORMAT(study_date,"%Y%m%d") AS date')
             ->selectRaw('SUM(study_time) AS today_hour')
             ->groupBy('date')
@@ -44,6 +45,7 @@ class Webapp extends Model
         $data = $this->whereBetween('study_date', array($now, $next))->get();
 
         return DB::table('webapps')
+            ->where('user_id', \Auth::user()->id)
             ->selectRaw('DATE_FORMAT(study_date,"%Y%m") AS date')
             ->selectRaw('SUM(study_time) AS month_hour')
             ->groupBy('date')
@@ -54,6 +56,7 @@ class Webapp extends Model
     public function getTotalHour()
     {
         return DB::table('webapps')
+            ->where('user_id', \Auth::user()->id)
             ->selectRaw('SUM(study_time) AS total_hour')
             ->get();
     }
@@ -65,6 +68,7 @@ class Webapp extends Model
         // 日付けあふれなしで翌月から1秒引いた時間を取得
         $next = Carbon::now()->startOfMonth()->addMonthNoOverflow()->subSecond(1);
         return DB::table('webapps')
+        ->where('user_id', \Auth::user()->id)
         ->whereBetween('study_date', array($now, $next))
         ->selectRaw('DATE_FORMAT(study_date,"%d") AS study_date')
         ->selectRaw('SUM(study_time) AS study_hour')
@@ -77,6 +81,7 @@ class Webapp extends Model
     {
         //全月分←今月に絞り込むカラムない
         return DB::table('language_webapp')
+        // ->where('user_id', \Auth::user()->id)
         ->join('languages', function($join) {
             $join->on('language_webapp.language_id', 'languages.id');
           })
@@ -89,6 +94,7 @@ class Webapp extends Model
     public function getContentHour() 
     {
         return DB::table('content_webapp')
+        // ->where('user_id', \Auth::user()->id)
         ->join('contents', function($join) {
             $join->on('content_webapp.content_id', 'contents.id');
           })
