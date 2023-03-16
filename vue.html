@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Vueで作ったTodoリスト</title>
+  </head>
+  <body>
+    <script src="https://unpkg.com/vue"></script>
+    <div id="app">
+      <div class="wrap">
+        <h2>ToDoリスト</h2>
+        
+        <input type="text" placeholder="やることを入力" v-model="task"/>
+        <!-- v-onとv-bindの両方を同時に使うv-model -->
+        <button @click="addTask">タスクを追加する</button>
+
+        <ul>
+          <li v-for="(todo,index) in todos">
+            <!-- 繰り返しで表示するのでv-forディレクティブ -->
+            <template v-if="f">
+              <!-- fをtrueにしたら表示される部分 -->
+              {{ todo }}
+              <input id="aaa" type="text" v-model="todo" @keyup.enter="f = false" @blur="f = false" ref="r1" />
+              <!-- focusはフォーカスされたとき、blurはフォーカスが外れたときにイベントが発火 -->
+              <button @click="updateTask(index)">更新</button>
+            </template>
+            <template v-else="">
+              <p class="taskList">{{todo}}</p>
+              <!-- {{todo}}を編集でも表示させる -->
+              <button @click="deleteTask(index)">削除</button>
+              <button @click="editTask(index)">編集</button>
+            </template>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          task: "",
+          todos: [],
+          todo:1,
+          v: "", 
+          f: false
+          // 表示する所最初空っぽの状態
+        },
+        methods: {
+          addTask: function (event) {
+            if (this.task == "") {
+              return;
+            }
+            this.todos.push(this.task);
+            // タスクを追加していく
+            this.task = "";
+            // タスクを追加した後はフォームの中の内容を消す
+          },
+          deleteTask(index){
+                        this.todos.splice(index,1);
+                        // 削除ボタンを押すたびに配列の内容を1つ消すために.splice()
+                        alert('タスクを消しますか？');
+                    },
+          editTask(index){
+                       this.f = true;
+                      //  <!-- templateタグのfをtrueにしたら表示される部分 -->
+                      //  this.$nextTick(function () { this.$refs.r1.focus();
+                        // 次のフレームでの処理、focusの要素ができるまで$nextTickでDOMが更新されるのを待つ
+                      //  })
+                    },
+          updateTask:function (index) {
+            // let bbb= document.getElementById('index')
+            console.log(this.aaa);
+            this.f = false;
+            // this.todo = this.todo;
+            this.todos.splice(index,1,aaa.value);
+          }
+        },
+      });
+    </script>
+    <style>
+      li {
+        list-style: none;
+      }
+      .wrap {
+        width: 300px;
+        margin: 0 auto;
+      }
+      .taskList {
+        display: inline-block;
+      }
+    </style>
+  </body>
+</html>
