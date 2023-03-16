@@ -1,2 +1,0 @@
-root: C:\Users\miyam\workspace\gen2.0-umiumi2002\vue-practice\todo-app\nvm
-path: C:\Program Files\nodejs
