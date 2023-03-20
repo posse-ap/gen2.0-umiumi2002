@@ -13,50 +13,62 @@ class WebappTableSeeder extends Seeder
     {
         $params = [
             [
+                'user_id' => 1,
                 'study_date' => '2022-10-07',
                 'study_time' => 2,
             ],
             [
+                'user_id' => 1,
                 'study_date' => '2022-11-09',
                 'study_time' => 2,
             ],
             [
+                'user_id' => 2,
                 'study_date' => '2022-11-09',
                 'study_time' => 2,
             ],
             [
+                'user_id' => 1,
                 'study_date' => '2022-11-09',
                 'study_time' => 2,
             ],
             [
+                'user_id' => 1,
                 'study_date' => '2022-11-09',
                 'study_time' => 2,
             ],
             [
+                'user_id' => 1,
                 'study_date' => '2022-11-15',
                 'study_time' => 2,
             ],
             [
+                'user_id' => 1,
                 'study_date' => '2022-11-16',
                 'study_time' => 2,
             ],
             [
+                'user_id' => 1,
                 'study_date' => '2022-11-20',
                 'study_time' => 2,
             ],
             [
+                'user_id' => 1,
                 'study_date' => '2022-11-27',
                 'study_time' => 2,
             ],
             [
+                'user_id' => 1,
                 'study_date' => '2022-11-30',
                 'study_time' => 2,
             ],
             [
+                'user_id' => 1,
                 'study_date' => '2022-11-18',
                 'study_time' => 2,
             ],
             [
+                'user_id' => 1,
                 'study_date' => '2022-11-16',
                 'study_time' => 2,
             ]
@@ -66,53 +78,21 @@ class WebappTableSeeder extends Seeder
 
         $params = [
             [
-                'webapp_id' => 1,
-                'study_time' => 2,
                 'language_name' => 'PHP',
             ],
             [
-                'webapp_id' => 1,
-                'study_time' => 2,
                 'language_name' => 'JavaScript',
             ],
             [
-                'webapp_id' => 2,
-                'study_time' => 1,
-                'language_name' => 'PHP',
-            ],
-            [
-                'webapp_id' => 2,
-                'study_time' => 1,
                 'language_name' => 'HTML',
             ],
             [
-                'webapp_id' => 4,
-                'study_time' => 2,
                 'language_name' => 'SQL',
             ],
             [
-                'webapp_id' => 7,
-                'study_time' => 2,
                 'language_name' => 'SHELL',
             ],
             [
-                'webapp_id' => 8,
-                'study_time' => 2,
-                'language_name' => 'HTML',
-            ],
-            [
-                'webapp_id' => 10,
-                'study_time' => 2,
-                'language_name' => 'PHP',
-            ],
-            [
-                'webapp_id' => 11,
-                'study_time' => 1,
-                'language_name' => 'PHP',
-            ],
-            [
-                'webapp_id' => 11,
-                'study_time' => 1,
                 'language_name' => 'Laravel',
             ],
         ];
@@ -121,57 +101,125 @@ class WebappTableSeeder extends Seeder
 
         $params = [
             [
-                'webapp_id' => 1,
-                'study_time' => 2,
                 'content_name' => 'N予備校',
             ],
             [
-                'webapp_id' => 1,
-                'study_time' => 2,
-                'content_name' => 'N予備校',
-            ],
-            [
-                'webapp_id' => 2,
-                'study_time' => 1,
                 'content_name' => 'ドットインストール',
             ],
             [
-                'webapp_id' => 2,
-                'study_time' => 1,
-                'content_name' => 'N予備校',
-            ],
-            [
-                'webapp_id' => 4,
-                'study_time' => 2,
-                'content_name' => 'N予備校',
-            ],
-            [
-                'webapp_id' => 7,
-                'study_time' => 2,
-                'content_name' => 'N予備校',
-            ],
-            [
-                'webapp_id' => 8,
-                'study_time' => 2,
-                'content_name' => 'N予備校',
-            ],
-            [
-                'webapp_id' => 10,
-                'study_time' => 2,
-                'content_name' => 'N予備校',
-            ],
-            [
-                'webapp_id' => 11,
-                'study_time' => 1,
-                'content_name' => 'N予備校',
-            ],
-            [
-                'webapp_id' => 11,
-                'study_time' => 1,
                 'content_name' => 'POSSE課題',
             ],
         ];
 
         DB::table('contents')->insert($params);
+
+        $params = [
+            [
+                'webapp_id' => 1,
+                'language_id' => 2,
+                'divided_time' => 1,
+            ],
+            [
+                'webapp_id' => 1,
+                'language_id' => 3,
+                'divided_time' => 1,
+            ],
+            [
+                'webapp_id' => 2,
+                'language_id' => 3,
+                'divided_time' => 1,
+            ],
+            [
+                'webapp_id' => 2,
+                'language_id' => 5,
+                'divided_time' => 1,
+            ],
+            [
+                'webapp_id' => 4,
+                'language_id' => 3,
+                'divided_time' => 1,
+            ],
+            [
+                'webapp_id' => 4,
+                'language_id' => 2,
+                'divided_time' => 1,
+            ],
+            [
+                'webapp_id' => 3,
+                'language_id' => 3,
+                'divided_time' => 1,
+            ],
+            [
+                'webapp_id' => 3,
+                'language_id' => 1,
+                'divided_time' => 1,
+            ],  
+        ];
+        DB::table('language_webapp')->insert($params);
+
+        $params = [
+            [
+                'webapp_id' => 1,
+                'content_id' => 2,
+                'divided_time' => 1,
+            ],
+            [
+                'webapp_id' => 1,
+                'content_id' => 3,
+                'divided_time' => 1,
+            ],
+            [
+                'webapp_id' => 2,
+                'content_id' => 3,
+                'divided_time' => 1,
+            ],
+            [
+                'webapp_id' => 2,
+                'content_id' => 5,
+                'divided_time' => 1,
+            ],
+            [
+                'webapp_id' => 4,
+                'content_id' => 3,
+                'divided_time' => 1,
+            ],
+            [
+                'webapp_id' => 4,
+                'content_id' => 2,
+                'divided_time' => 1,
+            ],
+            [
+                'webapp_id' => 3,
+                'content_id' => 3,
+                'divided_time' => 1,
+            ],
+            [
+                'webapp_id' => 3,
+                'content_id' => 1,
+                'divided_time' => 1,
+            ],  
+        ];
+        DB::table('content_webapp')->insert($params);
+        $params = [
+            [
+                "name"         => '管理者',
+                "email"        => 'admin@gmail.com',
+                "password"     => Hash::make('password'),
+                "role"      => 'admin',
+            ],
+            [
+                "name"         => 'miu',
+                "email"        => 'miu@gmail.com',
+                "password"     => Hash::make('miu'),
+                "role"      => 'member',
+            ],
+            [
+                "name"         => 'furuyamiu',
+                "email"        => 'furuyamiu@gmail.com',
+                "password"     => Hash::make('furuyamiu'),
+                "role"      => 'member',
+            ],
+        ];
+        DB::table('users')->insert($params);
     }
 }

@@ -36,4 +36,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    /**
+     * The attributes that are gureded
+     * @var array
+     */
+    protected $guarded = [
+        'role'
+    ];
 }

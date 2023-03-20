@@ -14,11 +14,8 @@ use App\Http\Controllers\MailSendController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/webapp', 'WebappController@index');
+// Route::get('/webapp', 'WebappController@index');
 
 Auth::routes();
 
@@ -27,10 +24,20 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/mail', 'MailSendController@index');
 
-Route::middleware(['auth'])->group(function () {
-
-Route::resource('/webapp', 'TestController');
-
+Route::get('/', function () {
+    return view('welcome');
 });
-// get処理
+
+// Route::middleware(['auth'])->group(function () {
+    //一般ユーザー
+    // Route::group(['middleware' => ['auth', 'can:user-higher']], function () {
+        Route::resource('webapp', 'TestController');
+      // });
+
+      // 管理者以上
+      // Route::group(['middleware' => ['auth', 'can:admin-higher']], function () {
+        Route::get('/admin', 'AdminController@index')->name('admin');
+      // });
+// });
+
 

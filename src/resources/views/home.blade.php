@@ -13,8 +13,12 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
                     You are logged in!
+                    @can ('user')
+                    <br><a href="{{ route('webapp.index') }}">webappへ</a>
+                    @elsecan ('admin')
+                    <br><a href="{{ route('admin') }}">管理画面</a>
+                    @endcan 
                 </div>
             </div>
         </div>

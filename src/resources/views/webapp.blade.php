@@ -232,7 +232,7 @@
             <button class="responsiveButton" id="responsivePost">記録・投稿</button>
         </div>
         {{-- --------------- modal-------------}}
-        <form action="/webapp" method="post">
+        <form action="/webapp" method="POST">
             @csrf
             <div class="modal">
                 <span class="close-btn"></span>
@@ -241,43 +241,44 @@
                         @csrf
                         <p>学習日</p>
                         <div class="calendar">
-                            <input id="date" type="date" name="date">
+                            <input id="date" type="date" name="study_date">
                             <div class="calendar__modal">
                             </div>
                         </div>
                         <p>学習コンテンツ（複数選択可）</p>
                         <div class="contact__form__item">
-                            <input type="checkbox" id="check-content1" name="content" value=""><label
+                            <input type="checkbox" id="check-content1" name="content[]" value="N予備校"><label
                                 for="check-content1"></label>N予備校
-                            <input type="checkbox" id="check-content2" name="content" value=""><label
+                            <input type="checkbox" id="check-content2" name="content[]" value="ドットインストール"><label
                                 for="check-content2"></label>ドットインストール
-                            <input type="checkbox" id="check-content3" name="content" value=""><label
+                            <input type="checkbox" id="check-content3" name="content[]" value="POSSE課題"><label
                                 for="check-content3"></label>POSSE課題
                         </div>
                         <p>学習言語（複数選択可）</p>
+                        <!-- //foreachで回す -->
                         <div class="contact__form__item">
-                            <input type="checkbox" id="check-language1" name="language" value=""><label
+                            <input type="checkbox" id="check-language1" name="language[]" value="HTML"><label
                                 for="check-language1"></label>HTML
-                            <input type="checkbox" id="check-language2" name="language" value=""><label
+                            <input type="checkbox" id="check-language2" name="language[]" value="CSS"><label
                                 for="check-language2"></label>CSS
-                            <input type="checkbox" id="check-language3" name="language" value=""><label
+                            <input type="checkbox" id="check-language3" name="language[]" value="JavaScript"><label
                                 for="check-language3"></label>JavaScript
-                            <input type="checkbox" id="check-language4" name="language" value=""><label
+                            <input type="checkbox" id="check-language4" name="language[]" value="PHP"><label
                                 for="check-language4"></label>PHP
-                            <input type="checkbox" id="check-language5" name="language" value=""><label
+                            <input type="checkbox" id="check-language5" name="language[]" value="Laravel"><label
                                 for="check-language5"></label>Laravel
-                            <input type="checkbox" id="check-language6" name="language" value=""><label
+                            <input type="checkbox" id="check-language6" name="language[]" value="SQL"><label
                                 for="check-language6"></label>SQL
-                            <input type="checkbox" id="check-language7" name="language" value=""><label
+                            <input type="checkbox" id="check-language7" name="language[]" value="SHELL"><label
                                 for="check-language7"></label>SHELL
-                            <input type="checkbox" id="check-language8" name="language" value=""><label
+                            <input type="checkbox" id="check-language8" name="language[]" value="情報システム基礎知識"><label
                                 for="check-language8"></label>情報システム基礎知識
                         </div>
                     </div>
                     <div class="modal-right">
                         <p>学習時間</p>
                         <div>
-                            <input type="text" name="study-time" class="study-time" value="">
+                            <input type="text" name="study_time" class="study-time" value="">
                         </div>
                         <p>Twitter用コメント</p>
                         <textarea id="tweetBox" class="twitter-comment" name="tweet_box" cols="40" rows="8"></textarea>
@@ -288,7 +289,7 @@
                     </div>
                 </div>
                 <span class="postbutton">
-                    <input class="button" id="TWEET" href="http://twitter.com/share?text=" target="_blank" value="記録・投稿">
+                    <input type="submit" class="button" id="TWEET" href="http://twitter.com/share?text=" target="_blank" value="記録・投稿">
                 </span>
             </div>
         </form>

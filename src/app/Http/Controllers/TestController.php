@@ -2,13 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Content;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Http\Request;
+use App\Webapp;
+use App\Language;
 
 class TestController extends Controller
 {
-
-
-
+    public function __construct(){
+        $this->middleware('auth');
+      }
 
     /**
      * Display a listing of the resource.
@@ -20,7 +26,9 @@ class TestController extends Controller
     {
         $user = Auth::user();
         $this->webapps = new Webapp();   
+        // オブジェクト   
         $today_hours = $this->webapps->getTodayHour();
+        // dd($today_hours);
         $month_hours = $this->webapps->getMonthHour();
         $total_hours = $this->webapps->getTotalHour();
         $study_hours =$this->webapps->getStudyHour();
@@ -29,9 +37,9 @@ class TestController extends Controller
             $study_result[]=[$i,0];  
         }
         foreach($study_hours as $key => $value) {
-            $study_result[$value->date][1]=(int)$value->study_hour;
+            $study_result[(int)$value->study_date][1]=(int)$value->study_hour;
         }
-        
+
         //円グラフ
         $language_hours =$this->webapps->getLanguageHour();
         $language_result[]=['language_name','hours'];
@@ -68,7 +76,32 @@ class TestController extends Controller
      */
     public function store(Request $request)
     {
-        dd(hello);
+        $inputs = $request->all();
+        $webapp = new Webapp;
+        // $language_ids = Language::where('language_name',$request->language)->get('id');
+        // dd($request->get('content'));
+        // $get_content_id = Content::where('content_name',$request->get('content'));
+        // dd($get_content_id);
+        // $webapp -> language_webapp ->id = $request -> language_name ->with('languages')->language_name;
+        // $webapp -> language_id = $request -> language;
+        // $webapp -> study_time = $request -> study_time;
+        // Webapp::create([
+        //     $inputs,
+        //     'user_id' => Auth::id()]);
+        Webapp::create([
+            'user_id' => Auth::id(),
+            'study_date' => $request->study_date,
+            'study_time' => $request->study_time,
+        ]);
+        // Webapp::with('languages')->sync($request->webapp_id, ['language_id' => $request->get('langage')]);
+        
+       $contents_name = $request->get('content[]');
+    //    dd($contents_name);
+    //    $comment = $request->input('comment');
+
+        return redirect('/webapp');
+       
+        // dd($request->study_time);
     }
 
     /**

@@ -3,6 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Config;
+
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,8 +25,8 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
-    {
-        //
+    public function boot() {
+        URL::forceScheme('https');
+        URL::forceRootUrl(Config::get('app.url'));
     }
 }

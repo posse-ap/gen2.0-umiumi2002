@@ -15,21 +15,20 @@ class CreateWebappsTable extends Migration
     {
         Schema::create('webapps', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('user_id');
             $table->date('study_date');
             $table->integer('study_time');
         });
 
         Schema::create('languages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('webapp_id');
-            $table->integer('study_time');
+            
             $table->string('language_name');
         });
 
         Schema::create('contents', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('webapp_id');
-            $table->integer('study_time');
+           
             $table->string('content_name');
         });
 
