@@ -1,17 +1,16 @@
 version: "3"
-volumes:
-  db-volume:
-  maildir: {}
+
 
 
 services:
   db:
     build:
-      context: ./db
+      image: mysql:8.0
+      command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
     ports:
       - 3306:3306
     volumes:
-      - ./db/var/lib/mysql:/var/lib/mysql
+      - ./db-data:/var/lib/mysql
     environment:
       - MYSQL_DATABASE=laravel
       - MYSQL_USER=laravel
@@ -33,15 +32,3 @@ services:
     volumes:
       - ../src:/work/backend
     depends_on: ["app"]
-
-  mailhog:
-    image: mailhog/mailhog
-    container_name: mailhog
-    ports:
-      - "1025:1025"
-      - "8025:8025"
-    environment:
-      MH_STORAGE: maildir
-      MH_MAILDIR_PATH: /tmp
-    volumes:
-      - maildir:/tmp  
